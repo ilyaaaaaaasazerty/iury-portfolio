@@ -1,0 +1,244 @@
+{
+  "name": "Belkhiri Abdelaziz",
+  "initials": "BA",
+  "brand": "IURY",
+  "roles": [
+    "Autoentrepreneur",
+    "AI Researcher"
+  ],
+  "location": {
+    "en": "Algeria",
+    "fr": "Algérie",
+    "ar": "الجزائر"
+  },
+  "email": "belkhiri.abdelaziz0703@gmail.com",
+  "phone": "0557592254",
+  "available": true,
+  "portraitUrl": "portrait.jpg",
+  "since": "2022",
+  "tagline": {
+    "en": "Autoentrepreneur and AI researcher — I design software that sees, decides, and ships.",
+    "fr": "Autoentrepreneur et chercheur en IA — je conçois des logiciels qui voient, décident et se déploient.",
+    "ar": "مقاول ذاتي وباحث في الذكاء الاصطناعي — أصمّم برمجيات ترى وتقرّر وتُطلَق."
+  },
+  "statement": {
+    "en": "I treat software like cinema. Every product I build is a system that should see clearly, decide well, and move beautifully.",
+    "fr": "Je traite le logiciel comme du cinéma. Chaque produit que je construis est un système qui doit voir clair, bien décider et bouger avec élégance.",
+    "ar": "أتعامل مع البرمجيات كأنها سينما. كل منتج أبنيه هو نظامٌ ينبغي أن يرى بوضوح، ويقرّر بحكمة، ويتحرّك بجمال."
+  },
+  "bio": {
+    "en": "I'm an independent software builder and AI researcher working under the IURY studio. I ship full products end to end — web, mobile and desktop — with an obsession for AI systems, real-time architecture, and interfaces that move like film. The work runs from AI tutors and computer-vision try-on to real-time platforms and cinematic storefronts: research thinking, production discipline.",
+    "fr": "Je suis un développeur indépendant et chercheur en IA au sein du studio IURY. Je livre des produits complets de bout en bout — web, mobile et desktop — avec une obsession pour les systèmes d'IA, l'architecture temps réel et les interfaces qui bougent comme du cinéma. Mon travail va des tuteurs IA et de l'essayage par vision par ordinateur jusqu'aux plateformes temps réel et aux boutiques cinématographiques : une pensée de chercheur, une rigueur de production.",
+    "ar": "أنا مطوّر برمجيات مستقل وباحث في الذكاء الاصطناعي ضمن استوديو IURY. أُنجز منتجات كاملة من الألف إلى الياء — ويب، وهاتف، وسطح المكتب — بشغفٍ بأنظمة الذكاء الاصطناعي والبنى الآنية والواجهات التي تتحرّك كالأفلام. تمتدّ أعمالي من معلّمي الذكاء الاصطناعي والتجربة الافتراضية بالرؤية الحاسوبية إلى المنصّات الآنية والمتاجر السينمائية: تفكيرُ باحثٍ والتزامُ إنتاج."
+  },
+  "socials": {
+    "github": "https://github.com/ilyaaaaaaasazerty",
+    "linkedin": "",
+    "x": "",
+    "instagram": "https://www.instagram.com/iurysvision/",
+    "website": "",
+    "whatsapp": "",
+    "calendly": ""
+  },
+  "stats": [
+    {
+      "value": "18",
+      "label": {
+        "en": "Products designed & built",
+        "fr": "Produits conçus & livrés",
+        "ar": "منتجًا صُمّم وبُني"
+      }
+    },
+    {
+      "value": "AI",
+      "label": {
+        "en": "Primary research focus",
+        "fr": "Axe de recherche principal",
+        "ar": "محور البحث الأساسي"
+      }
+    },
+    {
+      "value": "3",
+      "label": {
+        "en": "Platforms — web · mobile · desktop",
+        "fr": "Plateformes — web · mobile · desktop",
+        "ar": "منصّات — ويب · هاتف · سطح مكتب"
+      }
+    },
+    {
+      "value": "EN·FR·AR",
+      "label": {
+        "en": "Languages shipped, RTL-ready",
+        "fr": "Langues livrées, prêtes RTL",
+        "ar": "لغات مدعومة، جاهزة للكتابة يمينًا"
+      }
+    }
+  ],
+  "services": [
+    {
+      "title": {
+        "en": "AI-Driven Products",
+        "fr": "Produits pilotés par l'IA",
+        "ar": "منتجات مدفوعة بالذكاء الاصطناعي"
+      },
+      "desc": {
+        "en": "LLM integration, curriculum-bounded tutoring, computer-vision try-on, and voice interfaces in Darija, French and Arabic.",
+        "fr": "Intégration de LLM, tutorat borné au programme, essayage par vision par ordinateur et interfaces vocales en derja, français et arabe.",
+        "ar": "دمج نماذج اللغة، وتعليم محصور بالمنهج، وتجربة افتراضية بالرؤية الحاسوبية، وواجهات صوتية بالدارجة والفرنسية والعربية."
+      }
+    },
+    {
+      "title": {
+        "en": "Cinematic Web & Mobile",
+        "fr": "Web & mobile cinématographiques",
+        "ar": "ويب وهاتف سينمائيان"
+      },
+      "desc": {
+        "en": "Scroll-driven experiences with GSAP, Three.js, Framer Motion and Lenis — installable PWAs that feel native.",
+        "fr": "Des expériences pilotées au défilement avec GSAP, Three.js, Framer Motion et Lenis — des PWA installables au rendu natif.",
+        "ar": "تجارب مدفوعة بالتمرير عبر GSAP وThree.js وFramer Motion وLenis — تطبيقات PWA قابلة للتثبيت بإحساسٍ أصيل."
+      }
+    },
+    {
+      "title": {
+        "en": "Real-Time Architecture",
+        "fr": "Architecture temps réel",
+        "ar": "بنية آنية"
+      },
+      "desc": {
+        "en": "Socket.IO, Redis and BullMQ — live dashboards, queues, and multi-tenant infrastructure that scales.",
+        "fr": "Socket.IO, Redis et BullMQ — tableaux de bord en direct, files d'attente et infrastructure multi-tenant qui passe à l'échelle.",
+        "ar": "Socket.IO وRedis وBullMQ — لوحات حيّة، وطوابير، وبنية متعددة المستأجرين قابلة للتوسّع."
+      }
+    },
+    {
+      "title": {
+        "en": "End-to-End Ownership",
+        "fr": "Maîtrise de bout en bout",
+        "ar": "ملكية كاملة من البداية للنهاية"
+      },
+      "desc": {
+        "en": "From the first sketch to the production deploy — design, full-stack build, and the database underneath.",
+        "fr": "Du premier croquis au déploiement en production — design, développement full-stack et la base de données en dessous.",
+        "ar": "من أول رسم تخطيطي إلى النشر في الإنتاج — تصميم، وتطوير متكامل، وقاعدة البيانات تحتها."
+      }
+    }
+  ],
+  "process": [
+    {
+      "title": {
+        "en": "Discover",
+        "fr": "Découvrir",
+        "ar": "الاكتشاف"
+      },
+      "desc": {
+        "en": "I map the domain and the real problem before a single line of code.",
+        "fr": "Je cartographie le domaine et le vrai problème avant la moindre ligne de code.",
+        "ar": "أرسم المجال والمشكلة الحقيقية قبل كتابة أي سطر برمجي."
+      }
+    },
+    {
+      "title": {
+        "en": "Design",
+        "fr": "Concevoir",
+        "ar": "التصميم"
+      },
+      "desc": {
+        "en": "Prototype fast, test assumptions with you, and lock the motion language.",
+        "fr": "Prototyper vite, tester les hypothèses avec vous et figer le langage de mouvement.",
+        "ar": "نماذج أولية سريعة، واختبار الفرضيات معك، وتثبيت لغة الحركة."
+      }
+    },
+    {
+      "title": {
+        "en": "Build",
+        "fr": "Construire",
+        "ar": "البناء"
+      },
+      "desc": {
+        "en": "Ship in weekly increments you can see and steer.",
+        "fr": "Livrer par incréments hebdomadaires que vous pouvez voir et orienter.",
+        "ar": "تسليم أسبوعي متدرّج يمكنك رؤيته وتوجيهه."
+      }
+    },
+    {
+      "title": {
+        "en": "Polish",
+        "fr": "Peaufiner",
+        "ar": "الصقل"
+      },
+      "desc": {
+        "en": "Performance, accessibility, RTL i18n — the details that read as quality.",
+        "fr": "Performance, accessibilité, i18n RTL — les détails qui se lisent comme de la qualité.",
+        "ar": "الأداء، وإمكانية الوصول، والتدويل بالاتجاه RTL — التفاصيل التي تُقرأ كجودة."
+      }
+    },
+    {
+      "title": {
+        "en": "Deliver",
+        "fr": "Livrer",
+        "ar": "التسليم"
+      },
+      "desc": {
+        "en": "Deploy, measure, and iterate on real usage.",
+        "fr": "Déployer, mesurer et itérer sur l'usage réel.",
+        "ar": "النشر، والقياس، والتحسين بناءً على الاستخدام الفعلي."
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "title": {
+        "en": "Engineering",
+        "fr": "Ingénierie",
+        "ar": "الهندسة"
+      },
+      "items": [
+        "Full-stack TypeScript",
+        "Next.js & React 19",
+        "Node · NestJS · Express",
+        "React Native & Expo",
+        "Electron desktop apps"
+      ]
+    },
+    {
+      "title": {
+        "en": "AI & Research",
+        "fr": "IA & Recherche",
+        "ar": "الذكاء الاصطناعي والبحث"
+      },
+      "items": [
+        "LLM integration (Claude, OpenAI)",
+        "Curriculum-bounded tutoring",
+        "Computer-vision try-on",
+        "Voice interfaces — Darija · FR · AR"
+      ]
+    },
+    {
+      "title": {
+        "en": "Experience & Motion",
+        "fr": "Expérience & Motion",
+        "ar": "التجربة والحركة"
+      },
+      "items": [
+        "Cinematic scroll — GSAP · Lenis",
+        "WebGL · React Three Fiber",
+        "Framer Motion systems",
+        "Design systems & PWAs"
+      ]
+    },
+    {
+      "title": {
+        "en": "Data & Realtime",
+        "fr": "Données & Temps réel",
+        "ar": "البيانات والآنية"
+      },
+      "items": [
+        "PostgreSQL & Prisma",
+        "Supabase & Firebase",
+        "Socket.IO · Redis · BullMQ",
+        "Mapbox · FFmpeg pipelines"
+      ]
+    }
+  ]
+}
