@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { IuryLockup } from "./iury-mark";
 import { useLocale } from "./locale-provider";
 import { t } from "@/lib/i18n";
@@ -54,9 +53,6 @@ export default function Footer({ profile }: { profile: Profile }) {
 
           {/* meta + actions */}
           <div className="flex flex-col items-start gap-5 md:col-span-4 md:items-end md:text-end">
-            <Link href="/studio" className="meta text-[10px] text-smoke hover:text-bone">
-              {t(locale, "nav.studio")} →
-            </Link>
             <button
               onClick={() => scrollToId("top")}
               className="group flex items-center gap-3 meta text-[10px] text-smoke transition-colors hover:text-bone"

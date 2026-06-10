@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { IuryLockup } from "./iury-mark";
 import { useLocale } from "./locale-provider";
 import { scrollToId } from "./smooth-scroll";
@@ -66,12 +65,6 @@ export default function Header() {
 
           <div className="flex items-center gap-3 md:gap-5">
             <LocaleToggle locale={locale} setLocale={setLocale} />
-            <Link
-              href="/studio"
-              className="hidden meta text-[11px] text-smoke transition-colors hover:text-bone md:inline"
-            >
-              {t(locale, "nav.studio")}
-            </Link>
             <button
               onClick={() => setOpen(true)}
               aria-label={t(locale, "common.menu")}
@@ -111,20 +104,6 @@ export default function Header() {
                   {t(locale, item.key)}
                 </motion.button>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-10 border-t border-line pt-6"
-              >
-                <Link
-                  href="/studio"
-                  className="meta text-xs text-smoke"
-                  onClick={() => setOpen(false)}
-                >
-                  {t(locale, "nav.studio")} →
-                </Link>
-              </motion.div>
             </nav>
           </motion.div>
         )}
