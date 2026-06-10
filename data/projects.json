@@ -187,6 +187,11 @@
         "ar": {
           "tagline": "نقطة بيع تُدار بالصوت — بالدارجة الجزائرية."
         }
+      },
+      "caseStudy": {
+        "challenge": "Small shops still track sales, credit and stock on paper or rigid software — and can't type fast at a busy counter.",
+        "approach": "A desktop and mobile POS with barcode scanning, biometric login and an AI voice assistant fluent in Darija, French and Arabic — fully offline on SQLite.",
+        "result": "A hands-free, offline-first point-of-sale that syncs and reports in real time."
       }
     },
     {
@@ -222,6 +227,11 @@
         "ar": {
           "tagline": "منصّة واحدة تربط المرضى والأطباء والعيادات والمخابر."
         }
+      },
+      "caseStudy": {
+        "challenge": "Patients, doctors, clinics and labs work in disconnected tools, so records and bookings slip between them.",
+        "approach": "A single healthcare monorepo: a React Native app for patients and a Next.js dashboard for providers, with role-based access over Express, Prisma and PostgreSQL.",
+        "result": "One platform where care, records and lab results flow between every role."
       }
     },
     {
@@ -261,6 +271,11 @@
         "ar": {
           "tagline": "متجر أزياء فاخر يبدو كتطبيق iOS أصيل."
         }
+      },
+      "caseStudy": {
+        "challenge": "Most local fashion stores feel like plain web forms, not the premium brands they sell.",
+        "approach": "A trilingual PWA with edge-to-edge photography, optical-glass UI and spring-physics gestures that feel native, plus cash-on-delivery checkout.",
+        "result": "An installable, offline-ready storefront that looks and moves like a flagship iOS app."
       }
     },
     {
@@ -304,9 +319,23 @@
       "featured": true,
       "order": 7,
       "caseStudy": {
-        "challenge": "## Challenge\n\n### The Problems\n\n**1. Fragmented Restaurant Operations**\n- No unified system connecting customers, kitchen staff, drivers, and management\n- Orders taken via phone, cash registers, or paper—prone to errors and delays\n- Kitchen has no visibility into order priorities or customer-facing status\n- Drivers manually assigned deliveries with no tracking or optimization\n\n**2. Poor Customer Experience**\n- Customers queue to order; no self-service option\n- No real-time order status updates—customers stuck wondering when food arrives\n- Dine-in customers interrupt staff with \"is my order ready?\" queries\n- Inconsistent experience across order types (dine-in, takeaway, delivery)\n\n**3. Operational Inefficiency**\n- Manual status updates create communication gaps\n- No data on prep times, delivery times, or bottlenecks\n- Scaling to multiple locations requires replicating manual processes\n- Limited accountability for order delays or mishandled deliveries\n\n**4. Lack of Integration**\n- Menu, orders, and delivery information siloed across systems\n- No way to enforce roles or permissions (anyone can access any order)\n- Difficult to onboard new restaurants without custom configuration\n\n### Business Goal\n\nBuild a **unified, real-time restaurant management platform** that:\n- Enables customers to order via QR codes (zero friction)\n- Provides kitchen with live order visibility\n- Automates delivery assignment and tracking\n- Gives admins control over menu, orders, and operations\n- Scales to multiple restaurants and order types\n\n---\n",
-        "approach": "\n## Approach\n\n### Architecture Decision: Monorepo + Microservice Patterns\n\n**Why monorepo?**\n- Single source of truth for domain types (Order, User, Menu)\n- Shared types between frontend and backend prevent API contract drift\n- One `pnpm install`, one lockfile, one deployment pipeline\n- Type changes cascade automatically across all consumers\n\n```\ngreenfoood/ (monorepo)\n├── apps/server/          # Express API (port 4000)\n├── apps/web/             # Next.js frontend (port 3000)\n└── packages/shared/      # TypeScript types (@greenfood/shared)\n```\n\n### Technology Stack\n\n| Layer | Choice | Rationale |\n|-------|--------|-----------|\n| **Server** | Express + TypeScript | Lightweight, type-safe, battle-tested |\n| **Database** | PostgreSQL + Prisma | ACID compliance, migrations, type safety |\n| **Real-time** | Socket.IO + WebSockets | Instant updates, fallback for older browsers |\n| **Frontend** | Next.js 14 (App Router) | Server components, route groups by role |\n| **State** | Zustand | Minimal boilerplate for cart/orders |\n| **Auth** | JWT + httpOnly cookies | Stateless, CSRF-protected, refresh rotation |\n\n**Key principle:** Use proven, stable technologies; avoid hype. Optimize for maintainability and type safety.\n\n### Core Architecture Patterns\n\n#### 1. Role-Based Access Control (RBAC)\n\n**Problem:** Multi-role app (customer, kitchen, driver, admin) needs different views and permissions.\n\n**Solution:**\n```\nFrontend:\n  ├── (client)        → Menu/Cart/Checkout (unauthenticated)\n  ├── (kitchen)       → Live order display (KITCHEN role)\n  ├── (driver)        → Delivery assignments (DRIVER role)\n  └── (admin)         → Dashboard (ADMIN role)\n\nBackend:\n  Middleware: jwt.verify(token) → attach req.user.role\n  Guards: requireRole(\"ADMIN\", \"KITCHEN\") on protected routes\n  Socket.IO: room subscriptions per role (kitchen, driver:123, order:456)\n```\n\n**Result:** Each role sees only what they need; no permission bleeding.\n\n#### 2. QR-Based Ordering System\n\n**Problem:** Dine-in customers must flag down staff to order; staff interruptions disrupt kitchen.\n\n**Solution:**\n```\nEach table gets unique QR code (qrToken in database)\nCustomer scans → views menu → adds to cart → places order\nOrder appears in kitchen in real-time\nCustomer watches status on their phone\n```\n\n**Database:**\n```prisma\nTable { id, number, qrToken, restaurantId }\nOrder { id, tableId, type (DINE_IN|DELIVERY|TAKEAWAY) }\n```\n\n**Result:** Self-service ordering, zero staff interaction for order placement, reduced queue times.\n\n#### 3. Real-Time Order Pipeline with Socket.IO\n\n**Problem:** Kitchen doesn't know new orders; customers don't know order status; drives need assignment notifications.\n\n**Solution:**\n```\nCustomer places order (POST /api/orders)\n    ↓\nServer creates Order in DB\n    ↓\nEmits to \"kitchen\" room → Kitchen display updates instantly\n    ↓\nCustomer joins \"order:123\" room\n    ↓\nKitchen marks PREPARING → Server emits to order:123\n    ↓\nCustomer's phone updates in real-time (no refresh needed)\n```\n\n**Event Rooms:**\n- `kitchen` — all new orders\n- `order:<id>` — specific order updates\n- `driver:<id>` — delivery assignments for driver\n- `admin` — system alerts\n\n**Result:** <100ms latency for order updates; eliminates polling; kitchen never misses orders.\n\n#### 4. Delivery Management Workflow\n\n**Problem:** No way to assign, track, or prioritize deliveries.\n\n**Solution:**\n```\nAdmin views unassigned delivery orders\n    ↓\nClicks \"Assign Driver\" → Driver selected\n    ↓\nDriver gets notification (Socket.IO to driver:123 room)\n    ↓\nDriver accepts → Order status changes to ACCEPTED\n    ↓\nDriver marks PICKED_UP → Customers notified\n    ↓\nDriver marks DELIVERED → Order complete\n    ↓\nTimestamps logged: assignedAt, acceptedAt, pickedUpAt, deliveredAt\n```\n\n**Database:**\n```prisma\nDeliveryAssignment {\n  orderId, driverId, assignedAt, acceptedAt, pickedUpAt, deliveredAt\n}\n```\n\n**Result:** Full delivery visibility, SLA tracking, driver accountability, customer satisfaction.\n\n#### 5. Menu Management with Dynamic Options\n\n**Problem:** Menu items have variable options (size, toppings, sides) that need flexible pricing.\n\n**Solution:**\n```\nMenuItem { id, name, price, available, rating, calories, image }\n  ↓ 1:n\nMenuItemOption { label, price }\n  // e.g., Size M (+$0), Size L (+$1.50)\n\nOrderItem { quantity, unitPrice, selectedOpts: JSON }\n  // Customer chose: Medium Burger with Cheddar & Bacon = $9.99\n  // selectedOpts = [{ label: \"Cheddar\", price: 0.50 }, { label: \"Bacon\", price: 0.75 }]\n```\n\n**Admin Panel:**\n- Create/edit categories\n- Add/remove items, set availability\n- Define options and surcharges\n- Reorder by position for display priority\n\n**Result:** Flexible menu without schema migrations; admins control everything without code changes.\n\n### Implementation Highlights\n\n#### Authentication Flow\n\n```typescript\n// 1. Login\nPOST /api/auth/login { email, password }\n  → Validate passwordHash (bcrypt)\n  → Generate JWT (access token, short-lived)\n  → Set httpOnly cookie (refresh token, long-lived)\n  → Return { token, user: { id, role } }\n\n// 2. Protected routes\nGET /api/orders\n  Authorization: Bearer <access_token>\n  Middleware: jwt.verify(token) → attach req.user\n  Guard: requireRole(\"ADMIN\", \"KITCHEN\")\n  → Success or 403 Forbidden\n\n// 3. Next.js middleware\nEvery request to /admin/*, /kitchen/*, etc.\n  → Check gf_auth cookie for role\n  → Redirect if role mismatch\n  → Prevents accidental access to wrong dashboard\n```\n\n#### Order Creation with Real-Time Broadcast\n\n```typescript\n// apps/server/src/services/order.service.ts\nasync createOrder(items, type, tableId?, deliveryAddress?) {\n  // 1. Validate: items exist, prices match\n  const order = await db.order.create({\n    data: {\n      items: { create: items },\n      type, tableId, deliveryAddress,\n      total: calculateTotal(items)\n    },\n    include: { items: { include: { menuItem: true } } }\n  });\n  \n  // 2. Notify kitchen instantly\n  this.io.to(\"kitchen\").emit(\"newOrder\", {\n    order,\n    prepTime: estimatePrepTime(order.items)\n  });\n  \n  // 3. Customer joins their order room\n  // (happens on frontend after order succeeds)\n  \n  return order;\n}\n```\n\n#### Kitchen Display System\n\n```typescript\n// apps/web/src/app/(kitchen)/kitchen/display/page.tsx\nexport default function KitchenDisplay() {\n  const [orders, setOrders] = useState<Order[]>([]);\n  \n  useEffect(() => {\n    const socket = io(SOCKET_URL);\n    \n    // Subscribe to new orders\n    socket.on(\"newOrder\", (order) => {\n      setOrders((prev) => [order, ...prev]);\n      playNotificationSound(); // Alert kitchen\n    });\n    \n    // Subscribe to order updates (status changes)\n    socket.on(\"orderUpdate\", (order) => {\n      setOrders((prev) =>\n        prev.map((o) => (o.id === order.id ? order : o))\n      );\n    });\n    \n    return () => socket.disconnect();\n  }, []);\n  \n  return (\n    <div className=\"grid grid-cols-3 gap-4\">\n      {orders\n        .filter((o) => o.status !== \"DELIVERED\")\n        .sort((a, b) => {\n          // Show PENDING first, then by age\n          if (a.status === \"PENDING\") return -1;\n          return a.createdAt - b.createdAt;\n        })\n        .map((order) => (\n          <OrderCard key={order.id} order={order} />\n        ))}\n    </div>\n  );\n}\n```\n\n#### Real-Time Cart State (Zustand)\n\n```typescript\n// apps/web/src/store/cart.ts\nexport const useCartStore = create<CartState>((set, get) => ({\n  items: [],\n  \n  addItem: (menuItem, quantity, selectedOpts) =>\n    set((state) => ({\n      items: [\n        ...state.items,\n        { menuItem, quantity, selectedOpts, id: nanoid() }\n      ]\n    })),\n  \n  removeItem: (itemId) =>\n    set((state) => ({\n      items: state.items.filter((i) => i.id !== itemId)\n    })),\n  \n  getTotal: () => {\n    const items = get().items;\n    return items.reduce((sum, item) => {\n      const basePrice = item.menuItem.price;\n      const optionsPrice = item.selectedOpts.reduce(\n        (s, o) => s + o.price,\n        0\n      );\n      return sum + (basePrice + optionsPrice) * item.quantity;\n    }, 0);\n  }\n}));\n```\n\n### Database Design\n\n**Schema Highlights:**\n\n```prisma\n// Users & Auth\nUser { id, email, passwordHash, name, role (ADMIN|KITCHEN|DRIVER) }\n\n// Restaurant Structure\nRestaurant { id, name, tables[] }\nTable { id, number, qrToken (unique), restaurantId, orders[] }\n\n// Menu\nCategory { id, name, icon, position }\nMenuItem { id, name, price, image, available, rating, categoryId, options[] }\nMenuItemOption { id, label, price, menuItemId }\n\n// Orders & Items\nOrder {\n  id, status (PENDING→ACCEPTED→PREPARING→READY→PICKED_UP→DELIVERED)\n  type (DINE_IN|TAKEAWAY|DELIVERY)\n  tableId? (for dine-in), deliveryAddress? (for delivery)\n  total, createdAt, updatedAt\n}\nOrderItem {\n  id, quantity, unitPrice, selectedOpts (JSON), orderId, menuItemId\n}\n\n// Delivery\nDeliveryAssignment {\n  id, orderId (unique), driverId\n  assignedAt, acceptedAt, pickedUpAt, deliveredAt\n}\n```\n\n**Indexing Strategy:**\n- `Order.status` — kitchen filters \"all PENDING\"\n- `Order.createdAt` — timeline queries\n- `Order.type` — order type filtering\n- `MenuItem.available` — menu doesn't show unavailable items\n- `MenuItem.categoryId` — fetch by category\n- `Table.qrToken` — customer QR lookup\n- `User.role` — find staff by role\n\n### Development Workflow\n\n```bash\n# Install dependencies\npnpm install\n\n# Start database\ndocker compose up -d\n\n# Run both server and web concurrently\npnpm dev\n# → Server runs on http://localhost:4000\n# → Web runs on http://localhost:3000\n\n# Database tools\npnpm db:migrate   # Apply Prisma migrations\npnpm db:seed      # Seed demo data\npnpm db:studio    # Visual database explorer\n```\n\n**Seed Data:**\n```\nAccounts:\n  admin@greenfood.com / admin123     (ADMIN)\n  kitchen@greenfood.com / kitchen123 (KITCHEN)\n  driver@greenfood.com / driver123   (DRIVER)\n\nRestaurant:\n  \"Main Street Bistro\" with 8 tables\n  Sample menu: Appetizers, Mains, Desserts, Drinks\n```\n\n---\n",
-        "result": "## Result\n\n### Delivered System\n\n#### 1. Customer Experience\n✅ **Self-service ordering via QR code**\n- No staff interaction needed\n- Browse menu → add items → checkout in <2 minutes\n- Real-time order status on their phone\n- Supports dine-in, takeaway, and delivery in same app\n\n✅ **Real-time notifications**\n- \"Your order has been accepted\"\n- \"Your order is being prepared\"\n- \"Your order is ready for pickup\"\n- Reduces \"where's my order?\" inquiries by ~80%\n\n#### 2. Kitchen Operations\n✅ **Live order board**\n- New orders pop up instantly with sound alert\n- Organized by order type (dine-in, delivery, takeaway)\n- Staff mark items PREPARING → READY without leaving station\n- No lost orders, no reprinting receipts\n\n✅ **Order prioritization**\n- Kitchen can see estimated prep time\n- Delivery orders flagged for priority\n- Historical data shows which items slow down service\n\n#### 3. Delivery Management\n✅ **Automated assignment workflow**\n- Admin selects driver → driver gets notified instantly\n- Driver accepts/rejects → kitchen and customer see update\n- Timestamped tracking: assigned → accepted → picked up → delivered\n- Enables delivery SLA reporting\n\n✅ **Driver accountability**\n- Each delivery tracked from assignment to completion\n- Average acceptance time, delivery time, completion rate\n- Identify slow drivers, high-priority orders\n\n#### 4. Admin Control\n✅ **Complete dashboard**\n- View all orders (filterable by status, type, time range)\n- Manage tables, QR codes, menu categories, items\n- Monitor delivery assignments and driver performance\n- No code changes needed for menu updates\n\n✅ **Role-based permissions**\n- Admins see everything\n- Kitchen staff see only their orders\n- Drivers see only their assignments\n- Customers access only the menu + their order\n\n#### 5. Technical Achievements\n✅ **Type-safe full-stack**\n- Shared TypeScript types prevent API contract errors\n- Compile-time checks catch bugs before runtime\n- One type definition used by server AND client\n\n✅ **Real-time architecture**\n- <100ms latency for order updates\n- Socket.IO with room subscriptions (scalable to Redis adapter)\n- Fallback for browsers without WebSocket support\n\n✅ **Monorepo cohesion**\n- Single `pnpm install` installs both server and web\n- Shared `package.json` scripts orchestrate dev and build\n- Type changes sync across all consumers instantly\n\n✅ **Scalable design**\n- Extensible role system (easy to add new roles)\n- Flexible menu options (no schema migrations needed)\n- Order items stored as JSON (handles any option combo)\n- Database indexes on all hot paths (PENDING orders, createdAt, type)\n\n### Metrics & Impact\n\n| Metric | Before | After |\n|--------|--------|-------|\n| Order entry time | 3-5 min (queue) | <2 min (QR scan) |\n| Kitchen response time | 5-10 min (paper) | <30 sec (instant notification) |\n| Lost orders | 2-3 per day | 0 |\n| Delivery tracking | None | Real-time with GPS timestamps |\n| Menu update cycle | 1 week (print) | 5 minutes (live) |\n| Customer satisfaction | ~70% | ~95% (estimated) |\n| Staff interruptions | 30+ per shift | <5 per shift |\n\n### Code Quality\n\n```\n✅ TypeScript (no `any` types)\n✅ No runtime errors from API contract mismatches\n✅ Clear separation: routes → services → ORM\n✅ RBAC enforced at middleware + route level\n✅ Real-time events decoupled via Socket.IO rooms\n✅ Database migrations tracked in version control\n✅ Single source of truth (shared types package)\n```\n\n### Deployment Ready\n\n**Current state:** Production-ready MVP for single restaurant\n- All critical paths tested\n- Auth/RBAC enforced\n- Real-time updates stable\n- Database schema locked (migrations tracked)\n\n**Next steps to scale:**\n1. Add Redis adapter for Socket.IO (enables multiple server replicas)\n2. Switch to managed PostgreSQL (AWS RDS, Heroku Postgres)\n3. Deploy server to container platform (Docker, Railway, Heroku)\n4. Deploy frontend to CDN (Vercel, Netlify)\n\n---\n\n## Key Design Decisions\n\n### 1. Monorepo + Shared Types\n**Challenge:** Client and server types drifting out of sync; API contract errors at runtime.\n**Solution:** Single `@greenfood/shared` package with types imported by both.\n**Result:** Type safety across full stack; refactoring is one-way (types → all consumers).\n\n### 2. WebSocket (Socket.IO) for Real-Time\n**Challenge:** Polling creates latency and server load.\n**Solution:** WebSocket broadcasts to rooms (kitchen, driver, order).\n**Result:** <100ms updates; kitchen never misses orders; reduces server load by ~70%.\n\n### 3. QR-Based Ordering\n**Challenge:** Dine-in customers interrupt staff; queue times long.\n**Solution:** Unique `qrToken` per table; customers scan and order on their phone.\n**Result:** Zero friction; self-service; staff can focus on prep; eliminates printed menus.\n\n### 4. JSON for Order Options\n**Challenge:** Menu items have dynamic options (size, toppings); relational schema would be complex.\n**Solution:** Store `selectedOpts` as JSON in `OrderItem`.\n**Result:** Handles any option combo without schema changes; simple to query and debug.\n\n### 5. JWT + httpOnly Cookies\n**Challenge:** Stateless auth for REST API; secure refresh token rotation.\n**Solution:** Short-lived JWT access token + long-lived refresh token in httpOnly cookie.\n**Result:** Stateless server; CSRF protection; refresh token safe from XSS.\n\n### 6. Express + Prisma (Not bare SQL)\n**Challenge:** Type safety, maintainability, migrations.\n**Solution:** Prisma ORM generates types from schema; migrations automated.\n**Result:** Type-safe queries; `db:studio` for visual debugging; junior devs don't need SQL.\n\n---\n\n## What Went Well\n\n1. **TypeScript across full stack** — Caught contract mismatches before production\n2. **Monorepo structure** — One deploy, both server and web; shared types keep API in sync\n3. **Clear role separation in Next.js** — `(admin)`, `(kitchen)`, `(driver)` route groups prevent role confusion\n4. **Prisma Studio** — Invaluable for debugging data issues without SQL queries\n5. **Socket.IO rooms pattern** — Clean way to subscribe to relevant updates only\n6. **pnpm workspaces** — Fast installs, single lockfile, easy dependency management\n\n---\n\n## Future Roadmap\n\n### Phase 1 (Months 1-2): MVP Scale\n- [ ] SMS/Email notifications for order status\n- [ ] Multi-location support (same API, different restaurants)\n- [ ] Driver mobile app (optimized UI, location tracking)\n\n### Phase 2 (Months 3-4): Enterprise Features\n- [ ] Redis adapter for Socket.IO (scale to multiple servers)\n- [ ] Stripe integration for payment processing\n- [ ] Analytics dashboard (peak hours, prep times, revenue)\n- [ ] Loyalty program (stamps, discounts)\n\n### Phase 3 (Months 5+): Platform\n- [ ] White-label SaaS (franchise marketplace)\n- [ ] Predictive ordering (ML on historical data)\n- [ ] Inventory management (stock warnings)\n- [ ] Supply chain integration (auto-ordering from suppliers)\n\n---\n\n## Conclusion\n\n**Greenfoood** solves the fragmented, manual restaurant operations problem with a **unified, real-time platform**. By choosing a monorepo structure, type-safe stack (TypeScript, Prisma, Next.js), and event-driven architecture (Socket.IO), the system achieves:\n\n- ✅ **Zero-friction customer ordering** (QR-based self-service)\n- ✅ **Real-time kitchen visibility** (<100ms order notifications)\n- ✅ **Automated delivery management** (assignment, tracking, SLA)\n- ✅ **Full admin control** (menu, orders, roles, reports)\n- ✅ **Type-safe full stack** (shared types prevent contract errors)\n- ✅ **Scalable architecture** (ready for multi-location, high-throughput scenarios)\n\nThe platform is production-ready for single-restaurant deployment and engineered to scale to chains and franchises with minimal changes to core logic.\n\n---\n\n## Technical Stack Summary\n\n| Tier | Technology | Rationale |\n|------|-----------|-----------|\n| **Frontend** | Next.js 14 (App Router) + React 18 | Server components, role-based routing, streaming |\n| **State** | Zustand | Minimal boilerplate for cart, orders, notifications |\n| **Backend** | Express.js + TypeScript | Lightweight, type-safe, minimal overhead |\n| **Database** | PostgreSQL + Prisma | ACID compliance, migrations, type-safe ORM |\n| **Real-time** | Socket.IO | WebSocket with fallback, room-based subscriptions |\n| **Auth** | JWT + httpOnly cookies | Stateless, CSRF-protected, refresh rotation |\n| **Deployment** | Docker + PostgreSQL (docker-compose) | Local dev matches production; reproducible |\n| **Package Manager** | pnpm workspaces | Fast, efficient, shared lockfile, monorepo support |\n"
+        "challenge": "Restaurants run orders across paper, phone calls and cash registers — kitchen, drivers and managers never share one live view.",
+        "approach": "A real-time restaurant OS: QR-table ordering, live kitchen tickets, a driver portal and an admin dashboard, all synced over Socket.IO with role-based access.",
+        "result": "One system that carries a guest from QR scan to delivery, updating every role in real time.",
+        "metrics": [
+          {
+            "value": "4",
+            "label": "roles in one system"
+          },
+          {
+            "value": "<100ms",
+            "label": "order sync"
+          },
+          {
+            "value": "QR",
+            "label": "zero-friction ordering"
+          }
+        ]
       },
       "spotlight": true
     },
@@ -334,7 +363,12 @@
         "/projects/mavidz/cover.png"
       ],
       "featured": false,
-      "order": 8
+      "order": 8,
+      "caseStudy": {
+        "challenge": "A clothing brand needed a storefront that felt cinematic, not like a generic shop template.",
+        "approach": "An installable PWA with GSAP scroll motion, glassmorphism UI and cash-on-delivery checkout in DZD, backed by an admin analytics dashboard.",
+        "result": "A cinematic, installable store with order tracking and a product dashboard."
+      }
     },
     {
       "id": "lcoupa",
@@ -360,7 +394,12 @@
         "/projects/lcoupa/g1.png"
       ],
       "featured": false,
-      "order": 9
+      "order": 9,
+      "caseStudy": {
+        "challenge": "Barbershops lose walk-ins to long waits and have no clear view of their live queue.",
+        "approach": "A barber-facing app for live queues, appointments and requests, with staff profiles, analytics and offline Firebase sync.",
+        "result": "Real-time queue and appointment management that keeps working offline."
+      }
     },
     {
       "id": "mdc",
@@ -390,7 +429,12 @@
         "/projects/mdc/frame.jpg"
       ],
       "featured": false,
-      "order": 10
+      "order": 10,
+      "caseStudy": {
+        "challenge": "Furniture is hard to sell online — photos and spec lists don't convey a piece in a room.",
+        "approach": "A scroll-scrubbed canvas walkthrough of hundreds of frames plus a 3D product gallery, in a bilingual FR/AR storefront.",
+        "result": "A furniture house you explore like a film, then shop in 3D."
+      }
     },
     {
       "id": "e2echat",
@@ -416,7 +460,12 @@
       "images": [],
       "featured": false,
       "comingSoon": true,
-      "order": 11
+      "order": 11,
+      "caseStudy": {
+        "challenge": "Embeddable chat for teams needs tenant isolation, audit trails and queues — not just a message box.",
+        "approach": "A widget-first platform with multi-tenant isolation, role-based access, webhooks and a BullMQ queue on NestJS, Prisma and Redis.",
+        "result": "Production-grade, embeddable chat infrastructure with isolation and auditing built in."
+      }
     },
     {
       "id": "chick",
@@ -439,7 +488,12 @@
         "/projects/chick/cover.png"
       ],
       "featured": false,
-      "order": 12
+      "order": 12,
+      "caseStudy": {
+        "challenge": "Poultry farms work where the internet drops — but their tools assume it never does.",
+        "approach": "An offline-first Arabic RTL PWA on local PostgreSQL for flocks, workers and reports, falling back to a JSON store when the database is away.",
+        "result": "A farm-operations system that keeps running, and printing reports, with no internet."
+      }
     },
     {
       "id": "fadi-rental",
@@ -460,7 +514,12 @@
       "links": {},
       "images": [],
       "featured": false,
-      "order": 13
+      "order": 13,
+      "caseStudy": {
+        "challenge": "A rental agency ran its fleet, contracts and damage records on paper, with no offline-safe software.",
+        "approach": "An offline-first Windows app on local SQLite for fleet, clients, check-in/out and PDF contracts, with an optional booking site that syncs over REST.",
+        "result": "Desktop rental software that works offline, hardened with 24 smoke tests."
+      }
     },
     {
       "id": "cleanvision",
@@ -483,7 +542,12 @@
       },
       "images": [],
       "featured": false,
-      "order": 14
+      "order": 14,
+      "caseStudy": {
+        "challenge": "A premium cleaning company needed a site as polished as its service.",
+        "approach": "A cinematic site with a canvas glass-cleaning hero, before/after slider and process timeline, backed by a Supabase CMS with WhatsApp integration.",
+        "result": "A luxury marketing site the owner updates themselves, with leads flowing to WhatsApp."
+      }
     },
     {
       "id": "tagmode",
@@ -505,7 +569,12 @@
       "images": [],
       "featured": false,
       "comingSoon": true,
-      "order": 15
+      "order": 15,
+      "caseStudy": {
+        "challenge": "A fashion label needed an online store with real inventory control and local payments.",
+        "approach": "A dark-mode store with category browsing, checkout, an admin inventory panel and Chargily payments on Firestore.",
+        "result": "A men's and women's storefront with inventory management and Algerian payment rails."
+      }
     },
     {
       "id": "auto-showroom",
@@ -528,7 +597,12 @@
         "/projects/auto-showroom/cover.png"
       ],
       "featured": false,
-      "order": 16
+      "order": 16,
+      "caseStudy": {
+        "challenge": "Dealerships want a striking landing site but can't afford a custom build each time.",
+        "approach": "A resellable, GSAP-driven landing experience — featured cars, inventory grid, test-drive booking and WhatsApp leads — all driven by one site config.",
+        "result": "A cinematic dealership template re-skinned from a single config file."
+      }
     }
   ]
 }

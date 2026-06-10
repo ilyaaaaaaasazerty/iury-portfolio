@@ -99,7 +99,7 @@ export default function ProjectModal({
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* media */}
-          <div className="border-b border-line p-5 md:border-b-0 md:border-e">
+          <div className="min-w-0 border-b border-line p-5 md:border-b-0 md:border-e">
             <div className="film-edge h-2 opacity-50" aria-hidden />
             <div className="group relative aspect-[16/10] w-full overflow-hidden border-y border-line bg-ink">
               {!showPlate && (
@@ -114,7 +114,7 @@ export default function ProjectModal({
             </div>
             <div className="film-edge h-2 opacity-50" aria-hidden />
             {hasImages && images.length > 1 && (
-              <div className="mt-3 flex gap-2">
+              <div className="thumb-rail mt-3 flex gap-2 overflow-x-auto pb-1">
                 {images.map((im, i) => (
                   <button
                     key={i}
@@ -131,7 +131,7 @@ export default function ProjectModal({
           </div>
 
           {/* info */}
-          <div className="flex flex-col p-7 md:p-9">
+          <div className="flex min-w-0 flex-col p-7 md:p-9">
             {project.comingSoon && (
               <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-line-2 px-2.5 py-1 meta text-[9px] text-fog">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
