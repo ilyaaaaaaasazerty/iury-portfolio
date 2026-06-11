@@ -236,6 +236,53 @@
       }
     },
     {
+      "id": "project-mq9dmnbg",
+      "slug": "pos",
+      "name": "Mon Magasin",
+      "tagline": "",
+      "description": "A mobile-first platform that helps business owners manage sales, inventory, suppliers, customer debts, and employee activity from a single dashboard. The system includes an AI assistant that provides insights, answers business questions, and helps streamline daily operations, enabling smarter and more efficient business management.",
+      "category": "Mobile App",
+      "year": "2026",
+      "role": "Full Stack Engineer",
+      "stack": [
+        "React Native",
+        "Expo",
+        "Firebase",
+        "OpenAI API",
+        "Javascript"
+      ],
+      "status": "In development",
+      "links": {},
+      "images": [
+        "/projects/project-mq9dmnbg/1781175171211-jcfr.png",
+        "/projects/project-mq9dmnbg/1781175916318-a23q.jfif",
+        "/projects/project-mq9dmnbg/1781175916437-d0zs.jfif",
+        "/projects/project-mq9dmnbg/1781175916549-inm3.jfif",
+        "/projects/project-mq9dmnbg/1781175916628-3sa3.jfif",
+        "/projects/project-mq9dmnbg/1781175916701-fckh.jfif",
+        "/projects/project-mq9dmnbg/1781175916750-d3uu.jfif",
+        "/projects/project-mq9dmnbg/1781175916805-4zlu.jfif",
+        "/projects/project-mq9dmnbg/1781175916862-ewpe.jfif",
+        "/projects/project-mq9dmnbg/1781175916911-0vo3.jpg",
+        "/projects/project-mq9dmnbg/1781175916973-3dmq.jpg"
+      ],
+      "featured": false,
+      "order": 6,
+      "caseStudy": {
+        "challenge": "Small businesses often rely on notebooks, spreadsheets, and multiple apps to manage sales, inventory, suppliers, and customer debts, leading to inefficiencies and poor visibility into daily operations.",
+        "approach": "Built a mobile-first POS platform that centralizes sales, inventory management, supplier tracking, customer debts, employee access, and AI-powered business insights into a single system.",
+        "result": "Enabled business owners to manage their entire operation from one app, improving efficiency, inventory control, financial tracking, and decision-making through real-time data and AI assistance."
+      },
+      "i18n": {
+        "fr": {
+          "description": "Une plateforme priorisant l'usage mobile qui aide les chefs d'entreprise à gérer les ventes, les stocks, les fournisseurs, les dettes clients et l'activité des employés depuis un tableau de bord unique. Le système comprend un assistant IA qui fournit des analyses, répond aux questions professionnelles et aide à rationaliser les opérations quotidiennes, permettant une gestion d'entreprise plus intelligente et plus efficace."
+        },
+        "ar": {
+          "description": "\"منصة تركز على الأجهزة المحمولة تساعد أصحاب الأعمال على إدارة المبيعات، والمخزون، والموردين، وديون العملاء، وأنشطة الموظفين من خلال لوحة تحكم واحدة. يشتمل النظام على مساعد للذكاء الاصطناعي يقدم التحليلات، ويجيب على الاستفسارات المهنية، ويساعد في تبسيط العمليات اليومية، مما يتيح إدارة أعمال أكثر ذكاءً وكفاءة.\""
+        }
+      }
+    },
+    {
       "id": "gestion-pos",
       "slug": "gestion-pos",
       "name": "Gestion POS",
@@ -256,7 +303,7 @@
       "links": {},
       "images": [],
       "featured": true,
-      "order": 6,
+      "order": 7,
       "i18n": {
         "fr": {
           "tagline": "Une caisse que l'on pilote à la voix — en derja algérienne."
@@ -290,100 +337,7 @@
         "/projects/lcoupa/g1.png"
       ],
       "featured": false,
-      "order": 7
-    },
-    {
-      "id": "e2echat",
-      "slug": "e2echat",
-      "name": "E2Echat",
-      "tagline": "Multi-tenant, real-time chat infrastructure.",
-      "description": "A widget-first chat platform with multi-tenant isolation, role-based access, audit logging, webhooks and a BullMQ job queue — NestJS, Prisma and Redis on the back, a Vite/React SPA on the front.",
-      "category": "Infrastructure · SaaS",
-      "year": "2026",
-      "role": "Backend architect",
-      "stack": [
-        "NestJS",
-        "Prisma",
-        "Redis",
-        "BullMQ",
-        "Socket.IO",
-        "React"
-      ],
-      "status": "In development",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/e2e"
-      },
-      "images": [],
-      "featured": false,
-      "comingSoon": true,
       "order": 8
-    },
-    {
-      "id": "chick",
-      "slug": "chick",
-      "name": "Chick",
-      "tagline": "Offline-first operations for poultry farms.",
-      "description": "A poultry-operations system rebuilt offline-first on local PostgreSQL: layers, broilers, workers, partners, factories and printable reports — an Arabic RTL PWA that keeps running with no internet and falls back to a JSON store when the database is away.",
-      "category": "PWA · AgriTech",
-      "year": "2026",
-      "role": "Full-stack",
-      "stack": [
-        "Node.js",
-        "PostgreSQL",
-        "Vanilla JS PWA",
-        "Docker"
-      ],
-      "status": "Production",
-      "links": {},
-      "images": [
-        "/projects/chick/cover.png"
-      ],
-      "featured": false,
-      "order": 9
-    },
-    {
-      "id": "fadi-rental",
-      "slug": "fadi-location-auto",
-      "name": "Fadi Location Auto",
-      "tagline": "Desktop software for a car-rental agency, offline-first.",
-      "description": "An offline-first Windows app for a rental agency: fleet, clients, check-in/out, damage tracking and PDF contracts on a local SQLite database — with an optional public booking site that syncs cars and requests over a REST API. Hardened with 24 smoke tests.",
-      "category": "Desktop · Business",
-      "year": "2026",
-      "role": "Full-stack desktop",
-      "stack": [
-        "Electron",
-        "React",
-        "better-sqlite3",
-        "Next.js"
-      ],
-      "status": "Production · v0.2",
-      "links": {},
-      "images": [],
-      "featured": false,
-      "order": 10
-    },
-    {
-      "id": "cleanvision",
-      "slug": "cleanvision",
-      "name": "CleanVision",
-      "tagline": "A cinematic site for a premium cleaning company.",
-      "description": "A luxury cleaning-company site with a canvas glass-cleaning hero that wipes clear on scroll, a before/after slider, animated counters, a horizontal process timeline and a Supabase-backed admin CMS with WhatsApp integration.",
-      "category": "Marketing · CMS",
-      "year": "2026",
-      "role": "Design & front-end",
-      "stack": [
-        "Next.js",
-        "GSAP",
-        "Supabase",
-        "Tailwind"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/cleanvision"
-      },
-      "images": [],
-      "featured": false,
-      "order": 11
     },
     {
       "id": "tagmode",
@@ -410,12 +364,105 @@
       ],
       "featured": false,
       "comingSoon": false,
-      "order": 12,
+      "order": 9,
       "caseStudy": {
         "challenge": "TagMode needed more than just an online store. The goal was to create a premium shopping experience that matched the brand's identity while solving common issues faced by Algerian e-commerce businesses: slow websites, poor mobile experiences, complicated checkout flows, and limited payment options. The platform also needed to be scalable, easy to manage, and capable of handling future growth without sacrificing performance.",
         "approach": "I designed and developed a modern e-commerce platform focused on speed, usability, and conversion.\n\nBuilt the frontend with Next.js for high performance, SEO, and fast page loading.\nUsed Framer Motion to create smooth transitions and premium micro-interactions that enhance the shopping experience.\nImplemented Firebase for product management, order handling, and scalable backend infrastructure.\nIntegrated Chargily to enable secure online payments tailored to the Algerian market.\nOptimized the entire experience for mobile devices, where most customers browse and shop.\nCreated a clean product discovery flow with category navigation, search, and streamlined checkout.",
         "result": "The final product is a premium fashion e-commerce platform that combines luxury-brand aesthetics with modern web performance.\n\nFast and responsive experience across all devices.\nSeamless product browsing and checkout process.\nSecure online payment integration for Algerian customers.\nEasy-to-manage backend for products and orders.\nScalable architecture capable of supporting future business growth.\nStrong visual identity that reinforces the brand and improves customer trust.\n\nTech Stack: Next.js • Framer Motion • Firebase • Chargily\n\nLive Project: www.tagmodedz.com"
       }
+    },
+    {
+      "id": "e2echat",
+      "slug": "e2echat",
+      "name": "E2Echat",
+      "tagline": "Multi-tenant, real-time chat infrastructure.",
+      "description": "A widget-first chat platform with multi-tenant isolation, role-based access, audit logging, webhooks and a BullMQ job queue — NestJS, Prisma and Redis on the back, a Vite/React SPA on the front.",
+      "category": "Infrastructure · SaaS",
+      "year": "2026",
+      "role": "Backend architect",
+      "stack": [
+        "NestJS",
+        "Prisma",
+        "Redis",
+        "BullMQ",
+        "Socket.IO",
+        "React"
+      ],
+      "status": "In development",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/e2e"
+      },
+      "images": [],
+      "featured": false,
+      "comingSoon": true,
+      "order": 10
+    },
+    {
+      "id": "chick",
+      "slug": "chick",
+      "name": "Chick",
+      "tagline": "Offline-first operations for poultry farms.",
+      "description": "A poultry-operations system rebuilt offline-first on local PostgreSQL: layers, broilers, workers, partners, factories and printable reports — an Arabic RTL PWA that keeps running with no internet and falls back to a JSON store when the database is away.",
+      "category": "PWA · AgriTech",
+      "year": "2026",
+      "role": "Full-stack",
+      "stack": [
+        "Node.js",
+        "PostgreSQL",
+        "Vanilla JS PWA",
+        "Docker"
+      ],
+      "status": "Production",
+      "links": {},
+      "images": [
+        "/projects/chick/cover.png"
+      ],
+      "featured": false,
+      "order": 11
+    },
+    {
+      "id": "fadi-rental",
+      "slug": "fadi-location-auto",
+      "name": "Fadi Location Auto",
+      "tagline": "Desktop software for a car-rental agency, offline-first.",
+      "description": "An offline-first Windows app for a rental agency: fleet, clients, check-in/out, damage tracking and PDF contracts on a local SQLite database — with an optional public booking site that syncs cars and requests over a REST API. Hardened with 24 smoke tests.",
+      "category": "Desktop · Business",
+      "year": "2026",
+      "role": "Full-stack desktop",
+      "stack": [
+        "Electron",
+        "React",
+        "better-sqlite3",
+        "Next.js"
+      ],
+      "status": "Production · v0.2",
+      "links": {},
+      "images": [],
+      "featured": false,
+      "order": 12
+    },
+    {
+      "id": "cleanvision",
+      "slug": "cleanvision",
+      "name": "CleanVision",
+      "tagline": "A cinematic site for a premium cleaning company.",
+      "description": "A luxury cleaning-company site with a canvas glass-cleaning hero that wipes clear on scroll, a before/after slider, animated counters, a horizontal process timeline and a Supabase-backed admin CMS with WhatsApp integration.",
+      "category": "Marketing · CMS",
+      "year": "2026",
+      "role": "Design & front-end",
+      "stack": [
+        "Next.js",
+        "GSAP",
+        "Supabase",
+        "Tailwind"
+      ],
+      "status": "Live demo",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/cleanvision"
+      },
+      "images": [],
+      "featured": false,
+      "order": 13
     }
   ]
 }
