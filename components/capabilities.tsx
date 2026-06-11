@@ -76,7 +76,7 @@ export default function Capabilities({ profile }: { profile: Profile }) {
                 {ticker.map((tech, i) => (
                   <span key={i} className="flex items-center">
                     <span className="px-7 text-2xl text-fog/80 md:text-3xl">{tech}</span>
-                    <IuryMark size={14} className="text-fog/25" />
+                    <IuryMark size={14} className="opacity-25" />
                   </span>
                 ))}
               </span>

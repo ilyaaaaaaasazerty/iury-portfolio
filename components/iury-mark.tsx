@@ -1,40 +1,23 @@
-import { bladePaths } from "@/lib/aperture";
-
 interface Props {
   size?: number;
   className?: string;
   title?: string;
 }
 
-/** The IURY mark: a swirled aperture of blades around a watching eye. */
-export default function IuryMark({ size = 40, className = "", title = "IURY" }: Props) {
-  const blades = bladePaths({ ri: 11, ro: 47, span: 38, swirl: 31, count: 12 });
+// Aspect ratio (width / height) of the extracted aperture-eye in /public/iury-mark.png.
+const MARK_RATIO = 356 / 282;
 
+/** The IURY mark — the brand's actual aperture-eye logo. */
+export default function IuryMark({ size = 40, className = "", title = "IURY" }: Props) {
   return (
-    <svg
-      viewBox="0 0 100 100"
-      width={size}
-      height={size}
-      className={className}
-      role="img"
-      aria-label={title}
-      fill="none"
-    >
-      <g fill="currentColor" stroke="var(--color-ink)" strokeWidth="0.7">
-        {blades.map((d, i) => (
-          <path key={i} d={d} />
-        ))}
-      </g>
-      {/* eye socket */}
-      <circle cx="50" cy="50" r="12.2" fill="var(--color-ink)" />
-      <circle cx="50" cy="50" r="12.2" fill="none" stroke="currentColor" strokeWidth="1.1" />
-      {/* iris band */}
-      <circle cx="50" cy="50" r="8.6" fill="none" stroke="currentColor" strokeWidth="3.1" opacity="0.92" />
-      {/* pupil */}
-      <circle cx="50" cy="50" r="4.4" fill="var(--color-ink)" />
-      {/* catchlight */}
-      <circle cx="46.4" cy="46.4" r="1.7" fill="currentColor" />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/iury-mark.png"
+      alt={title}
+      draggable={false}
+      style={{ height: size, width: size * MARK_RATIO }}
+      className={`inline-block max-w-none select-none object-contain ${className}`}
+    />
   );
 }
 

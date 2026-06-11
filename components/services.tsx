@@ -48,7 +48,7 @@ export default function Services({ profile }: { profile: Profile }) {
                   </h3>
                   <IuryMark
                     size={22}
-                    className="hidden text-fog/30 transition-all duration-700 group-hover:rotate-[120deg] group-hover:text-fog/80 sm:block"
+                    className="hidden opacity-40 transition-all duration-700 group-hover:rotate-[120deg] group-hover:opacity-90 sm:block"
                   />
                 </div>
                 <p className="text-pretty text-sm leading-relaxed text-smoke md:col-span-5 md:col-start-8 md:text-base">

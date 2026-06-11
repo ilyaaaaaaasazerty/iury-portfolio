@@ -63,7 +63,7 @@ export default function Preloader() {
               animate={{ rotate: 360 }}
               transition={{ duration: 1.1, repeat: Infinity, ease: "linear" }}
             />
-            <IuryMark size={66} className="text-bone" />
+            <IuryMark size={66} />
           </motion.div>
 
           <div className="mt-10 flex flex-col items-center gap-3">

@@ -130,27 +130,17 @@ export default function IntroHero({ profile }: { profile: Profile }) {
 }
 
 function ClosedEye() {
-  const blades = bladePaths({ ri: 10, ro: 45, span: 38, swirl: 31, count: 12 });
   return (
-    <motion.svg
+    // eslint-disable-next-line @next/next/no-img-element
+    <motion.img
+      src="/iury-mark.png"
+      alt="IURY"
+      draggable={false}
       initial={{ rotate: -8, opacity: 0, scale: 0.92 }}
       animate={{ rotate: 0, opacity: 1, scale: 1 }}
       transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-      viewBox="0 0 100 100"
-      className="h-28 w-28 text-bone md:h-36 md:w-36"
-      style={{ filter: "drop-shadow(0 0 40px rgba(255,255,255,0.16))" }}
-      fill="none"
-    >
-      <g fill="currentColor" stroke="var(--color-ink)" strokeWidth="0.6">
-        {blades.map((d, i) => (
-          <path key={i} d={d} />
-        ))}
-      </g>
-      <circle cx="50" cy="50" r="11.4" fill="var(--color-ink)" />
-      <circle cx="50" cy="50" r="11.4" fill="none" stroke="currentColor" strokeWidth="1" />
-      <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" strokeWidth="3" opacity="0.92" />
-      <circle cx="50" cy="50" r="4.1" fill="var(--color-ink)" />
-      <circle cx="46.6" cy="46.6" r="1.6" fill="currentColor" />
-    </motion.svg>
+      className="h-24 w-auto md:h-32"
+      style={{ filter: "drop-shadow(0 0 44px rgba(255,255,255,0.18))" }}
+    />
   );
 }

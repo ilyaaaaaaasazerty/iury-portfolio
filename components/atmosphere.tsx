@@ -8,7 +8,7 @@ export default function Atmosphere({ flip = false }: { flip?: boolean }) {
       <div className="light-drift absolute inset-0" />
       <IuryMark
         size={560}
-        className={`absolute top-1/2 -translate-y-1/2 text-fog/[0.022] ${
+        className={`absolute top-1/2 -translate-y-1/2 opacity-[0.03] ${
           flip ? "-start-40" : "-end-40"
         }`}
       />
