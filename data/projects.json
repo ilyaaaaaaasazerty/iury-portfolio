@@ -293,36 +293,6 @@
       "order": 7
     },
     {
-      "id": "mdc",
-      "slug": "mdc-furniture",
-      "name": "MDC",
-      "alt": "أثاث الثقة",
-      "tagline": "A furniture house, scrolled like a film.",
-      "description": "A showcase for a furniture brand: hundreds of canvas frames scrubbed by scroll for a cinematic walkthrough, plus a 3D product gallery and a bilingual (FR/AR) storefront for beds, sofas and tables.",
-      "category": "Interactive · E-commerce",
-      "year": "2026",
-      "role": "Design & motion",
-      "stack": [
-        "Next.js",
-        "GSAP",
-        "Canvas frame-scrub",
-        "Three.js",
-        "next-intl"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/mdc"
-      },
-      "images": [
-        "/projects/mdc/cover.png",
-        "/projects/mdc/g1.png",
-        "/projects/mdc/g2.png",
-        "/projects/mdc/frame.jpg"
-      ],
-      "featured": false,
-      "order": 8
-    },
-    {
       "id": "e2echat",
       "slug": "e2echat",
       "name": "E2Echat",
@@ -346,7 +316,7 @@
       "images": [],
       "featured": false,
       "comingSoon": true,
-      "order": 9
+      "order": 8
     },
     {
       "id": "chick",
@@ -369,7 +339,7 @@
         "/projects/chick/cover.png"
       ],
       "featured": false,
-      "order": 10
+      "order": 9
     },
     {
       "id": "fadi-rental",
@@ -390,7 +360,7 @@
       "links": {},
       "images": [],
       "featured": false,
-      "order": 11
+      "order": 10
     },
     {
       "id": "cleanvision",
@@ -413,30 +383,7 @@
       },
       "images": [],
       "featured": false,
-      "order": 12
-    },
-    {
-      "id": "auto-showroom",
-      "slug": "auto-showroom",
-      "name": "Auto Showroom",
-      "tagline": "A cinematic landing experience for car dealerships.",
-      "description": "A resellable, GSAP-driven landing experience for high-end dealerships: featured vehicles, an inventory grid, test-drive booking and WhatsApp lead capture, all configurable from a single site config.",
-      "category": "Template · Marketing",
-      "year": "2026",
-      "role": "Design & front-end",
-      "stack": [
-        "Next.js 16",
-        "React 19",
-        "GSAP",
-        "Tailwind"
-      ],
-      "status": "Live demo",
-      "links": {},
-      "images": [
-        "/projects/auto-showroom/cover.png"
-      ],
-      "featured": false,
-      "order": 13
+      "order": 11
     },
     {
       "id": "tagmode",
@@ -455,10 +402,20 @@
       ],
       "status": "In development",
       "links": {},
-      "images": [],
+      "images": [
+        "/projects/tagmode/1781174141762-4v0d.jpeg",
+        "/projects/tagmode/1781174141658-56fz.jpeg",
+        "/projects/tagmode/1781174141696-ahd3.jpeg",
+        "/projects/tagmode/1781174141729-1vz8.jpeg"
+      ],
       "featured": false,
-      "comingSoon": true,
-      "order": 14
+      "comingSoon": false,
+      "order": 12,
+      "caseStudy": {
+        "challenge": "TagMode needed more than just an online store. The goal was to create a premium shopping experience that matched the brand's identity while solving common issues faced by Algerian e-commerce businesses: slow websites, poor mobile experiences, complicated checkout flows, and limited payment options. The platform also needed to be scalable, easy to manage, and capable of handling future growth without sacrificing performance.",
+        "approach": "I designed and developed a modern e-commerce platform focused on speed, usability, and conversion.\n\nBuilt the frontend with Next.js for high performance, SEO, and fast page loading.\nUsed Framer Motion to create smooth transitions and premium micro-interactions that enhance the shopping experience.\nImplemented Firebase for product management, order handling, and scalable backend infrastructure.\nIntegrated Chargily to enable secure online payments tailored to the Algerian market.\nOptimized the entire experience for mobile devices, where most customers browse and shop.\nCreated a clean product discovery flow with category navigation, search, and streamlined checkout.",
+        "result": "The final product is a premium fashion e-commerce platform that combines luxury-brand aesthetics with modern web performance.\n\nFast and responsive experience across all devices.\nSeamless product browsing and checkout process.\nSecure online payment integration for Algerian customers.\nEasy-to-manage backend for products and orders.\nScalable architecture capable of supporting future business growth.\nStrong visual identity that reinforces the brand and improves customer trust.\n\nTech Stack: Next.js • Framer Motion • Firebase • Chargily\n\nLive Project: www.tagmodedz.com"
+      }
     }
   ]
 }

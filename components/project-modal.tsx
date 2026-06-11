@@ -30,10 +30,12 @@ export default function ProjectModal({
   const { locale } = useLocale();
   const [active, setActive] = useState(0);
   const [errored, setErrored] = useState<Record<number, boolean>>({});
+  const [ar, setAr] = useState<number | null>(null);
 
   useEffect(() => {
     setActive(0);
     setErrored({});
+    setAr(null);
   }, [project.id]);
 
   useEffect(() => {
@@ -56,6 +58,9 @@ export default function ProjectModal({
   const images = project.images ?? [];
   const hasImages = images.length > 0;
   const showPlate = !hasImages || errored[active];
+  // Adapt the viewer frame to each image's real orientation (clamped) so portrait
+  // phone screenshots and landscape shots both display in full — no cropping.
+  const frameRatio = ar ? Math.min(1.8, Math.max(0.66, ar)) : 1.6;
 
   const meta: { k: string; v: string }[] = [
     { k: t(locale, "common.year"), v: project.year },
@@ -101,14 +106,32 @@ export default function ProjectModal({
           {/* media */}
           <div className="min-w-0 border-b border-line p-5 md:border-b-0 md:border-e">
             <div className="film-edge h-2 opacity-50" aria-hidden />
-            <div className="group relative aspect-[16/10] w-full overflow-hidden border-y border-line bg-ink">
+            <div
+              className="group relative max-h-[72vh] w-full overflow-hidden border-y border-line bg-ink"
+              style={{ aspectRatio: showPlate ? "16 / 10" : String(frameRatio) }}
+            >
               {!showPlate && (
-                <img
-                  src={images[active]}
-                  alt={project.name}
-                  onError={() => setErrored((e) => ({ ...e, [active]: true }))}
-                  className="h-full w-full object-cover"
-                />
+                <>
+                  {/* blurred backdrop fills the frame for any aspect ratio */}
+                  <img
+                    src={images[active]}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover opacity-25 blur-2xl"
+                  />
+                  <img
+                    key={images[active]}
+                    src={images[active]}
+                    alt={project.name}
+                    onLoad={(e) =>
+                      setAr(
+                        e.currentTarget.naturalWidth / e.currentTarget.naturalHeight
+                      )
+                    }
+                    onError={() => setErrored((e) => ({ ...e, [active]: true }))}
+                    className="relative h-full w-full object-contain"
+                  />
+                </>
               )}
               {showPlate && <AperturePlate project={project} index={index - 1} />}
             </div>
