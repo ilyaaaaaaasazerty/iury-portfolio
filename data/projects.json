@@ -301,7 +301,29 @@
       ],
       "status": "In development",
       "links": {},
-      "images": [],
+      "images": [
+        "/projects/gestion-pos/1781203200911-2f6d.png",
+        "/projects/gestion-pos/1781202154783-a35n.jpeg",
+        "/projects/gestion-pos/1781202154820-97o3.jpeg",
+        "/projects/gestion-pos/1781202154854-7zc5.jpeg",
+        "/projects/gestion-pos/1781202154888-6t4i.jpeg",
+        "/projects/gestion-pos/1781202154925-5a8c.jpeg",
+        "/projects/gestion-pos/1781202154965-ks3g.jpeg",
+        "/projects/gestion-pos/1781202155005-22in.jpeg",
+        "/projects/gestion-pos/1781202155042-kiv0.jpeg",
+        "/projects/gestion-pos/1781202155082-k6ii.jpeg",
+        "/projects/gestion-pos/1781202155133-ax54.jpeg",
+        "/projects/gestion-pos/1781202155171-77xl.jpeg",
+        "/projects/gestion-pos/1781202806470-1o5h.jpeg",
+        "/projects/gestion-pos/1781202806515-iusy.jpeg",
+        "/projects/gestion-pos/1781202806553-agcw.jpeg",
+        "/projects/gestion-pos/1781202806589-1jqx.jpeg",
+        "/projects/gestion-pos/1781202806625-kwsj.jpeg",
+        "/projects/gestion-pos/1781202806663-0vf5.jpeg",
+        "/projects/gestion-pos/1781202806703-b78o.jpeg",
+        "/projects/gestion-pos/1781202806744-4so6.jpeg",
+        "/projects/gestion-pos/1781202806784-k8il.jpeg"
+      ],
       "featured": true,
       "order": 7,
       "i18n": {
@@ -311,6 +333,11 @@
         "ar": {
           "tagline": "نقطة بيع تُدار بالصوت — بالدارجة الجزائرية."
         }
+      },
+      "caseStudy": {
+        "challenge": "Small businesses were struggling with fragmented operations across inventory, supplier management, debt tracking, expenses, and reporting. Manual processes led to errors, delayed supplier orders, and poor visibility into business performance.",
+        "approach": "Built a full-stack POS ecosystem consisting of a desktop/web POS and a synchronized mobile application. Developed modules for inventory management, supplier orders, supplier settlements, debt tracking, expenses, and real-time reporting. Integrated an AI assistant capable of understanding text and voice commands in Algerian Darija, allowing users to perform actions such as generating and printing supplier orders instantly without navigating through multiple screens. The system was built with a focus on automation, accessibility, and real-time data synchronization.",
+        "result": "Reduced administrative workload by automating repetitive business operations and document generation. Enabled business owners to manage their entire operation from both desktop and mobile devices while interacting naturally with the system using Darija voice and text commands. Supplier orders that previously required multiple manual steps can now be generated, approved, and printed within seconds through AI-powered interactions."
       }
     },
     {
