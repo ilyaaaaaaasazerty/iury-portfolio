@@ -1,190 +1,6 @@
 {
   "projects": [
     {
-      "id": "medico",
-      "slug": "mdc",
-      "name": "Medico",
-      "tagline": "One platform connecting patients, doctors, clinics and labs.",
-      "description": "A full-stack healthcare monorepo. Patients book care and carry their records on a React Native app, while doctors, clinics, labs and hospitals run their workflows from a Next.js dashboard — backed by Express, Prisma and PostgreSQL with role-based access throughout.",
-      "category": "HealthTech · SaaS",
-      "year": "2026",
-      "role": "Full-stack architect",
-      "stack": [
-        "Turborepo",
-        "Express",
-        "Prisma",
-        "PostgreSQL",
-        "React Native",
-        "Next.js"
-      ],
-      "status": "In development",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/Medico"
-      },
-      "images": [
-        "/projects/medico/1781171772478-8xl3.png",
-        "/projects/medico/1781171791856-g1bu.jfif",
-        "/projects/medico/1781171791919-hu4b.jfif",
-        "/projects/medico/1781171791986-fh0d.jfif",
-        "/projects/medico/1781171792033-2c23.jfif",
-        "/projects/medico/1781171792072-10ni.jfif",
-        "/projects/medico/1781171792117-8nsc.jfif",
-        "/projects/medico/1781171792151-gp5e.jfif",
-        "/projects/medico/1781171792188-5wjb.jfif",
-        "/projects/medico/1781171792224-6lmk.jfif",
-        "/projects/medico/1781171792260-a6xb.jfif",
-        "/projects/medico/1781171792296-4rjj.jfif",
-        "/projects/medico/1781171792338-ahwh.jfif",
-        "/projects/medico/1781171792378-htw9.jfif",
-        "/projects/medico/1781171792419-2o2a.jfif",
-        "/projects/medico/1781171792466-1jv7.jfif",
-        "/projects/medico/1781171792516-7x50.jfif",
-        "/projects/medico/1781171792566-7aox.jfif",
-        "/projects/medico/1781171792603-95od.jfif",
-        "/projects/medico/1781171792638-8nr2.jfif",
-        "/projects/medico/1781171792672-179x.jfif",
-        "/projects/medico/1781171792704-g4j1.jfif"
-      ],
-      "featured": false,
-      "order": 1,
-      "i18n": {
-        "fr": {
-          "tagline": "Une plateforme reliant patients, médecins, cliniques et laboratoires."
-        },
-        "ar": {
-          "tagline": "منصّة واحدة تربط المرضى والأطباء والعيادات والمخابر."
-        }
-      },
-      "caseStudy": {
-        "challenge": "Healthcare in many regions is fragmented: patients juggle multiple apps to find doctors, book labs, manage records, and arrange transport. Providers (clinics, labs, doctors) operate in silos with no unified workflow tool. The goal was to build a single platform that connects patients, doctors, clinics, labs, and transport providers — with role-based access, real-time coordination, and a scalable backend.",
-        "approach": "Built as a Turborepo monorepo with three apps sharing a common backend:\n\n- Backend — Node.js + Express + TypeScript, PostgreSQL via Prisma, Redis for caching/rate limiting, BullMQ for async jobs (notifications, PDF generation), S3 for file storage\n- Mobile — React Native + Expo with role-based navigation (patient, doctor, clinic admin, lab admin, transport provider)\n- Web — Next.js 14 admin dashboard for system oversight, verifications, audit logs, and finance\n\nA polymorphic User model drives 7 distinct roles under one authentification system. Over 30 services handle domain logic (appointments, prescriptions, lab requests, payments, messaging, blood donation, emergency).",
-        "result": "A fully integrated healthcare platform with:\n- End-to-end patient journey: search → book → consult → lab → prescription → records\n- Multi-role provider tools for clinics, labs, and doctors\n- Admin visibility across all operations (audit logs, analytics, support, finance)\n- Production-ready infrastructure: JWT authentification, rate limiting, Prometheus metrics, structured logging",
-        "metrics": []
-      },
-      "comingSoon": true,
-      "spotlight": true
-    },
-    {
-      "id": "greenfood",
-      "slug": "greenfood",
-      "name": "Greenfood",
-      "tagline": "A real-time operating system for restaurants.",
-      "description": "A restaurant OS built as a monorepo: QR-table ordering for guests, live tickets for the kitchen, a driver portal, and an admin dashboard — all synchronized in real time over Socket.IO with JWT auth and role-based access.",
-      "category": "SaaS · Realtime",
-      "year": "2026",
-      "role": "Full-stack engineer",
-      "stack": [
-        "Next.js",
-        "Express",
-        "Socket.IO",
-        "Prisma",
-        "PostgreSQL"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/greenfoood"
-      },
-      "images": [
-        "/projects/greenfood/cover.png",
-        "/projects/greenfood/m1.jpg",
-        "/projects/greenfood/m2.jpg",
-        "/projects/greenfood/m3.jpg"
-      ],
-      "featured": false,
-      "order": 2
-    },
-    {
-      "id": "optivision",
-      "slug": "optivision",
-      "name": "OptiVision",
-      "tagline": "A vision laboratory — WebGL try-on and AI face analysis for eyewear.",
-      "description": "A dark-luxury optician platform that opens with a scroll-driven cinematic sequence — a WebGL iris, a vision tunnel, an AI face scan — before revealing virtual try-on over live webcam, face-shape analysis with tailored frame matches, an AI stylist quiz, and clinical dashboards for optometrists.",
-      "category": "AI · WebGL · HealthTech",
-      "year": "2026",
-      "role": "Design & engineering",
-      "stack": [
-        "Next.js",
-        "React Three Fiber",
-        "GSAP",
-        "Framer Motion",
-        "Face mesh"
-      ],
-      "status": "Prototype",
-      "links": {},
-      "images": [
-        "/projects/optivision/cover.png"
-      ],
-      "featured": true,
-      "spotlight": true,
-      "order": 3,
-      "caseStudy": {
-        "challenge": "Buying glasses online is guesswork — people can't tell which frames suit their face, and most optician sites feel like spreadsheets.",
-        "approach": "I built a vision laboratory: a scroll-driven WebGL intro (iris, vision tunnel, AI face scan), live-webcam virtual try-on, face-shape analysis that matches frames, and an AI stylist quiz — wrapped in dark-luxury motion, with optometrist dashboards behind it.",
-        "result": "A cinematic prototype that turns frame selection into an experience, pairing real computer-vision try-on with clinical tooling.",
-        "metrics": [
-          {
-            "value": "WebGL",
-            "label": "real-time 3D experience"
-          },
-          {
-            "value": "AI",
-            "label": "face-shape matching"
-          },
-          {
-            "value": "2",
-            "label": "pro dashboards"
-          }
-        ]
-      },
-      "i18n": {
-        "fr": {
-          "tagline": "Un laboratoire de la vision — essayage WebGL et analyse du visage par IA."
-        },
-        "ar": {
-          "tagline": "مختبرٌ للرؤية — تجربة نظارات بـ WebGL وتحليل للوجه بالذكاء الاصطناعي."
-        }
-      }
-    },
-    {
-      "id": "gadastore",
-      "slug": "gadastore",
-      "name": "GADASTORE",
-      "tagline": "A luxury fashion store that feels like a native iOS app.",
-      "description": "A premium, trilingual (EN/FR/AR) fashion PWA with edge-to-edge campaign photography, optical-glass UI, spring-physics swipe navigation and an Apple-Photos-style rising product sheet. Installable, offline-ready, and tuned for Algeria with cash-on-delivery checkout.",
-      "category": "E-commerce · PWA",
-      "year": "2026",
-      "role": "Design & front-end",
-      "stack": [
-        "Next.js 16",
-        "React 19",
-        "Tailwind v4",
-        "Framer Motion",
-        "Lenis",
-        "Remotion"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/gadastore"
-      },
-      "images": [
-        "/projects/gadastore/g1.png",
-        "/projects/gadastore/cover.png",
-        "/projects/gadastore/g2.png",
-        "/projects/gadastore/g3.png",
-        "/projects/gadastore/g4.png"
-      ],
-      "featured": true,
-      "order": 4,
-      "i18n": {
-        "fr": {
-          "tagline": "Une boutique de mode de luxe qui se vit comme une app iOS native."
-        },
-        "ar": {
-          "tagline": "متجر أزياء فاخر يبدو كتطبيق iOS أصيل."
-        }
-      }
-    },
-    {
       "id": "ilmi",
       "slug": "ilmi",
       "name": "ILMI",
@@ -206,7 +22,7 @@
       "images": [],
       "featured": true,
       "spotlight": true,
-      "order": 5,
+      "order": 1,
       "caseStudy": {
         "challenge": "Algerian students grind for the BEM and BAC, yet ranked study apps reward fast fingers and internet speed — not real thinking. And generic AI tutors happily answer outside the syllabus.",
         "approach": "I designed a competitive 'Knowledge City' where duels score genuine reasoning time, an AI tutor hard-bounded to the official Ministry curriculum, and an AI coach that forecasts exam outcomes from real grading coefficients — Arabic-first and fully right-to-left.",
@@ -236,49 +52,109 @@
       }
     },
     {
-      "id": "project-mq9dmnbg",
-      "slug": "pos",
-      "name": "Mon Magasin",
-      "tagline": "",
-      "description": "A mobile-first platform that helps business owners manage sales, inventory, suppliers, customer debts, and employee activity from a single dashboard. The system includes an AI assistant that provides insights, answers business questions, and helps streamline daily operations, enabling smarter and more efficient business management.",
-      "category": "Mobile App",
+      "id": "optivision",
+      "slug": "optivision",
+      "name": "OptiVision",
+      "tagline": "A vision laboratory — WebGL try-on and AI face analysis for eyewear.",
+      "description": "A dark-luxury optician platform that opens with a scroll-driven cinematic sequence — a WebGL iris, a vision tunnel, an AI face scan — before revealing virtual try-on over live webcam, face-shape analysis with tailored frame matches, an AI stylist quiz, and clinical dashboards for optometrists.",
+      "category": "AI · WebGL · HealthTech",
       "year": "2026",
-      "role": "Full Stack Engineer",
+      "role": "Design & engineering",
       "stack": [
-        "React Native",
-        "Expo",
-        "Firebase",
-        "OpenAI API",
-        "Javascript"
+        "Next.js",
+        "React Three Fiber",
+        "GSAP",
+        "Framer Motion",
+        "Face mesh"
       ],
-      "status": "In development",
+      "status": "Prototype",
       "links": {},
       "images": [
-        "/projects/project-mq9dmnbg/1781175171211-jcfr.png",
-        "/projects/project-mq9dmnbg/1781175916318-a23q.jfif",
-        "/projects/project-mq9dmnbg/1781175916437-d0zs.jfif",
-        "/projects/project-mq9dmnbg/1781175916549-inm3.jfif",
-        "/projects/project-mq9dmnbg/1781175916628-3sa3.jfif",
-        "/projects/project-mq9dmnbg/1781175916701-fckh.jfif",
-        "/projects/project-mq9dmnbg/1781175916750-d3uu.jfif",
-        "/projects/project-mq9dmnbg/1781175916805-4zlu.jfif",
-        "/projects/project-mq9dmnbg/1781175916862-ewpe.jfif",
-        "/projects/project-mq9dmnbg/1781175916911-0vo3.jpg",
-        "/projects/project-mq9dmnbg/1781175916973-3dmq.jpg"
+        "/projects/optivision/cover.png"
       ],
-      "featured": false,
-      "order": 6,
+      "featured": true,
+      "spotlight": true,
+      "order": 2,
       "caseStudy": {
-        "challenge": "Small businesses often rely on notebooks, spreadsheets, and multiple apps to manage sales, inventory, suppliers, and customer debts, leading to inefficiencies and poor visibility into daily operations.",
-        "approach": "Built a mobile-first POS platform that centralizes sales, inventory management, supplier tracking, customer debts, employee access, and AI-powered business insights into a single system.",
-        "result": "Enabled business owners to manage their entire operation from one app, improving efficiency, inventory control, financial tracking, and decision-making through real-time data and AI assistance."
+        "challenge": "Buying glasses online is guesswork — people can't tell which frames suit their face, and most optician sites feel like spreadsheets.",
+        "approach": "I built a vision laboratory: a scroll-driven WebGL intro (iris, vision tunnel, AI face scan), live-webcam virtual try-on, face-shape analysis that matches frames, and an AI stylist quiz — wrapped in dark-luxury motion, with optometrist dashboards behind it.",
+        "result": "A cinematic prototype that turns frame selection into an experience, pairing real computer-vision try-on with clinical tooling.",
+        "metrics": [
+          {
+            "value": "WebGL",
+            "label": "real-time 3D experience"
+          },
+          {
+            "value": "AI",
+            "label": "face-shape matching"
+          },
+          {
+            "value": "2",
+            "label": "pro dashboards"
+          }
+        ]
       },
       "i18n": {
         "fr": {
-          "description": "Une plateforme priorisant l'usage mobile qui aide les chefs d'entreprise à gérer les ventes, les stocks, les fournisseurs, les dettes clients et l'activité des employés depuis un tableau de bord unique. Le système comprend un assistant IA qui fournit des analyses, répond aux questions professionnelles et aide à rationaliser les opérations quotidiennes, permettant une gestion d'entreprise plus intelligente et plus efficace."
+          "tagline": "Un laboratoire de la vision — essayage WebGL et analyse du visage par IA."
         },
         "ar": {
-          "description": "\"منصة تركز على الأجهزة المحمولة تساعد أصحاب الأعمال على إدارة المبيعات، والمخزون، والموردين، وديون العملاء، وأنشطة الموظفين من خلال لوحة تحكم واحدة. يشتمل النظام على مساعد للذكاء الاصطناعي يقدم التحليلات، ويجيب على الاستفسارات المهنية، ويساعد في تبسيط العمليات اليومية، مما يتيح إدارة أعمال أكثر ذكاءً وكفاءة.\""
+          "tagline": "مختبرٌ للرؤية — تجربة نظارات بـ WebGL وتحليل للوجه بالذكاء الاصطناعي."
+        }
+      }
+    },
+    {
+      "id": "ziane",
+      "slug": "ziane-motors",
+      "name": "Ziane Motors",
+      "tagline": "A car showroom you scrub with your finger, driven by a database brain.",
+      "description": "An immersive mobile showroom for the Jetour T2 and MG7. Finger position scrubs through pre-rendered WebP frame sequences; every clip, spec, annotation and string lives in Supabase; Claude answers buyer questions in-context, Mapbox places dealerships, and FFmpeg extracts frames server-side.",
+      "category": "Interactive · Automotive",
+      "year": "2026",
+      "role": "Full-stack & motion engineering",
+      "stack": [
+        "Next.js",
+        "Supabase",
+        "Claude API",
+        "Mapbox GL",
+        "FFmpeg"
+      ],
+      "status": "In development",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/ziane"
+      },
+      "images": [
+        "/projects/ziane/cover.png",
+        "/projects/ziane/g1.png"
+      ],
+      "featured": true,
+      "spotlight": true,
+      "order": 3,
+      "caseStudy": {
+        "challenge": "Online car showrooms are static galleries. The client wanted something that felt like sitting in the car and turning it in your hands — on a phone.",
+        "approach": "Finger position scrubs pre-rendered WebP frame sequences for a buttery 360° feel; every clip, spec and string lives in Supabase so the showroom is fully data-driven; Claude answers buyer questions in-context and FFmpeg extracts frames server-side.",
+        "result": "A database-driven, finger-scrubbed showroom for the Jetour T2 and MG7 with zero hardcoded content and an in-context AI sales assistant.",
+        "metrics": [
+          {
+            "value": "360°",
+            "label": "frame-scrub interaction"
+          },
+          {
+            "value": "0",
+            "label": "hardcoded content"
+          },
+          {
+            "value": "Claude",
+            "label": "in-context Q&A"
+          }
+        ]
+      },
+      "i18n": {
+        "fr": {
+          "tagline": "Un showroom auto que l'on parcourt au doigt, piloté par une base de données."
+        },
+        "ar": {
+          "tagline": "معرض سيارات تتصفّحه بإصبعك، تقوده قاعدة بيانات ذكية."
         }
       }
     },
@@ -301,31 +177,9 @@
       ],
       "status": "In development",
       "links": {},
-      "images": [
-        "/projects/gestion-pos/1781203200911-2f6d.png",
-        "/projects/gestion-pos/1781202154783-a35n.jpeg",
-        "/projects/gestion-pos/1781202154820-97o3.jpeg",
-        "/projects/gestion-pos/1781202154854-7zc5.jpeg",
-        "/projects/gestion-pos/1781202154888-6t4i.jpeg",
-        "/projects/gestion-pos/1781202154925-5a8c.jpeg",
-        "/projects/gestion-pos/1781202154965-ks3g.jpeg",
-        "/projects/gestion-pos/1781202155005-22in.jpeg",
-        "/projects/gestion-pos/1781202155042-kiv0.jpeg",
-        "/projects/gestion-pos/1781202155082-k6ii.jpeg",
-        "/projects/gestion-pos/1781202155133-ax54.jpeg",
-        "/projects/gestion-pos/1781202155171-77xl.jpeg",
-        "/projects/gestion-pos/1781202806470-1o5h.jpeg",
-        "/projects/gestion-pos/1781202806515-iusy.jpeg",
-        "/projects/gestion-pos/1781202806553-agcw.jpeg",
-        "/projects/gestion-pos/1781202806589-1jqx.jpeg",
-        "/projects/gestion-pos/1781202806625-kwsj.jpeg",
-        "/projects/gestion-pos/1781202806663-0vf5.jpeg",
-        "/projects/gestion-pos/1781202806703-b78o.jpeg",
-        "/projects/gestion-pos/1781202806744-4so6.jpeg",
-        "/projects/gestion-pos/1781202806784-k8il.jpeg"
-      ],
+      "images": [],
       "featured": true,
-      "order": 7,
+      "order": 4,
       "i18n": {
         "fr": {
           "tagline": "Une caisse que l'on pilote à la voix — en derja algérienne."
@@ -335,9 +189,185 @@
         }
       },
       "caseStudy": {
-        "challenge": "Small businesses were struggling with fragmented operations across inventory, supplier management, debt tracking, expenses, and reporting. Manual processes led to errors, delayed supplier orders, and poor visibility into business performance.",
-        "approach": "Built a full-stack POS ecosystem consisting of a desktop/web POS and a synchronized mobile application. Developed modules for inventory management, supplier orders, supplier settlements, debt tracking, expenses, and real-time reporting. Integrated an AI assistant capable of understanding text and voice commands in Algerian Darija, allowing users to perform actions such as generating and printing supplier orders instantly without navigating through multiple screens. The system was built with a focus on automation, accessibility, and real-time data synchronization.",
-        "result": "Reduced administrative workload by automating repetitive business operations and document generation. Enabled business owners to manage their entire operation from both desktop and mobile devices while interacting naturally with the system using Darija voice and text commands. Supplier orders that previously required multiple manual steps can now be generated, approved, and printed within seconds through AI-powered interactions."
+        "challenge": "Small shops still track sales, credit and stock on paper or rigid software — and can't type fast at a busy counter.",
+        "approach": "A desktop and mobile POS with barcode scanning, biometric login and an AI voice assistant fluent in Darija, French and Arabic — fully offline on SQLite.",
+        "result": "A hands-free, offline-first point-of-sale that syncs and reports in real time."
+      }
+    },
+    {
+      "id": "medico",
+      "slug": "medico",
+      "name": "Medico",
+      "tagline": "One platform connecting patients, doctors, clinics and labs.",
+      "description": "A full-stack healthcare monorepo. Patients book care and carry their records on a React Native app, while doctors, clinics, labs and hospitals run their workflows from a Next.js dashboard — backed by Express, Prisma and PostgreSQL with role-based access throughout.",
+      "category": "HealthTech · SaaS",
+      "year": "2026",
+      "role": "Full-stack architect",
+      "stack": [
+        "Turborepo",
+        "Express",
+        "Prisma",
+        "PostgreSQL",
+        "React Native",
+        "Next.js"
+      ],
+      "status": "In development",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/Medico"
+      },
+      "images": [
+        "/projects/medico/cover.png"
+      ],
+      "featured": true,
+      "order": 5,
+      "i18n": {
+        "fr": {
+          "tagline": "Une plateforme reliant patients, médecins, cliniques et laboratoires."
+        },
+        "ar": {
+          "tagline": "منصّة واحدة تربط المرضى والأطباء والعيادات والمخابر."
+        }
+      },
+      "caseStudy": {
+        "challenge": "Patients, doctors, clinics and labs work in disconnected tools, so records and bookings slip between them.",
+        "approach": "A single healthcare monorepo: a React Native app for patients and a Next.js dashboard for providers, with role-based access over Express, Prisma and PostgreSQL.",
+        "result": "One platform where care, records and lab results flow between every role."
+      }
+    },
+    {
+      "id": "gadastore",
+      "slug": "gadastore",
+      "name": "GADASTORE",
+      "tagline": "A luxury fashion store that feels like a native iOS app.",
+      "description": "A premium, trilingual (EN/FR/AR) fashion PWA with edge-to-edge campaign photography, optical-glass UI, spring-physics swipe navigation and an Apple-Photos-style rising product sheet. Installable, offline-ready, and tuned for Algeria with cash-on-delivery checkout.",
+      "category": "E-commerce · PWA",
+      "year": "2026",
+      "role": "Design & front-end",
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "Tailwind v4",
+        "Framer Motion",
+        "Lenis",
+        "Remotion"
+      ],
+      "status": "Live demo",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/gadastore"
+      },
+      "images": [
+        "/projects/gadastore/cover.png",
+        "/projects/gadastore/g1.png",
+        "/projects/gadastore/g2.png",
+        "/projects/gadastore/g3.png",
+        "/projects/gadastore/g4.png"
+      ],
+      "featured": true,
+      "order": 6,
+      "i18n": {
+        "fr": {
+          "tagline": "Une boutique de mode de luxe qui se vit comme une app iOS native."
+        },
+        "ar": {
+          "tagline": "متجر أزياء فاخر يبدو كتطبيق iOS أصيل."
+        }
+      },
+      "caseStudy": {
+        "challenge": "Most local fashion stores feel like plain web forms, not the premium brands they sell.",
+        "approach": "A trilingual PWA with edge-to-edge photography, optical-glass UI and spring-physics gestures that feel native, plus cash-on-delivery checkout.",
+        "result": "An installable, offline-ready storefront that looks and moves like a flagship iOS app."
+      }
+    },
+    {
+      "id": "greenfood",
+      "slug": "greenfood",
+      "name": "Greenfood",
+      "tagline": "A real-time operating system for restaurants.",
+      "description": "A restaurant OS built as a monorepo: QR-table ordering for guests, live tickets for the kitchen, a driver portal, and an admin dashboard — all synchronized in real time over Socket.IO with JWT auth and role-based access.",
+      "category": "SaaS · Realtime",
+      "year": "2026",
+      "role": "Full-stack engineer",
+      "stack": [
+        "Next.js",
+        "Express",
+        "Socket.IO",
+        "Prisma",
+        "PostgreSQL"
+      ],
+      "status": "Live demo",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/greenfoood"
+      },
+      "images": [
+        "/projects/greenfood/cover.png",
+        "/projects/greenfood/1781130707404-ezf1.jpg",
+        "/projects/greenfood/1781130707453-8hdx.jpg",
+        "/projects/greenfood/1781130707517-ahjb.jpg",
+        "/projects/greenfood/1781130707566-jlww.jpg",
+        "/projects/greenfood/1781130707614-45r7.jpg",
+        "/projects/greenfood/1781130707658-2lki.jpg",
+        "/projects/greenfood/1781130707700-i61n.jpg",
+        "/projects/greenfood/1781130707737-kmjh.jpg",
+        "/projects/greenfood/1781130707778-66jh.jpg",
+        "/projects/greenfood/1781130707816-05l0.jpg",
+        "/projects/greenfood/1781130707853-2pa4.jpg",
+        "/projects/greenfood/1781130707899-8k7d.jpg",
+        "/projects/greenfood/1781130707937-gb40.jpg",
+        "/projects/greenfood/1781130707975-2ggk.jpg",
+        "/projects/greenfood/1781130708017-jnwg.jpg"
+      ],
+      "featured": true,
+      "order": 7,
+      "caseStudy": {
+        "challenge": "Restaurants run orders across paper, phone calls and cash registers — kitchen, drivers and managers never share one live view.",
+        "approach": "A real-time restaurant OS: QR-table ordering, live kitchen tickets, a driver portal and an admin dashboard, all synced over Socket.IO with role-based access.",
+        "result": "One system that carries a guest from QR scan to delivery, updating every role in real time.",
+        "metrics": [
+          {
+            "value": "4",
+            "label": "roles in one system"
+          },
+          {
+            "value": "<100ms",
+            "label": "order sync"
+          },
+          {
+            "value": "QR",
+            "label": "zero-friction ordering"
+          }
+        ]
+      },
+      "spotlight": true
+    },
+    {
+      "id": "mavidz",
+      "slug": "mavidz",
+      "name": "MAVIDZ",
+      "tagline": "A cinematic e-commerce PWA for an Algerian clothing brand.",
+      "description": "An installable storefront with GSAP scroll animations, glassmorphism UI, cash-on-delivery checkout in DZD, order tracking and an admin analytics dashboard for products and orders.",
+      "category": "E-commerce · PWA",
+      "year": "2026",
+      "role": "Full-stack",
+      "stack": [
+        "Next.js",
+        "GSAP",
+        "Tailwind",
+        "Zustand",
+        "Firebase"
+      ],
+      "status": "In development",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/mavidz"
+      },
+      "images": [
+        "/projects/mavidz/cover.png"
+      ],
+      "featured": false,
+      "order": 8,
+      "caseStudy": {
+        "challenge": "A clothing brand needed a storefront that felt cinematic, not like a generic shop template.",
+        "approach": "An installable PWA with GSAP scroll motion, glassmorphism UI and cash-on-delivery checkout in DZD, backed by an admin analytics dashboard.",
+        "result": "A cinematic, installable store with order tracking and a product dashboard."
       }
     },
     {
@@ -364,38 +394,46 @@
         "/projects/lcoupa/g1.png"
       ],
       "featured": false,
-      "order": 8
-    },
-    {
-      "id": "tagmode",
-      "slug": "tagmode",
-      "name": "TagMode",
-      "tagline": "A fashion storefront for men and women.",
-      "description": "A fashion e-commerce platform with category browsing, checkout, an admin inventory panel and Chargily payments — dark mode by default, with Firestore-backed products.",
-      "category": "E-commerce",
-      "year": "2026",
-      "role": "Full-stack",
-      "stack": [
-        "Next.js 16",
-        "Firebase",
-        "Framer Motion",
-        "Chargily"
-      ],
-      "status": "In development",
-      "links": {},
-      "images": [
-        "/projects/tagmode/1781174141762-4v0d.jpeg",
-        "/projects/tagmode/1781174141658-56fz.jpeg",
-        "/projects/tagmode/1781174141696-ahd3.jpeg",
-        "/projects/tagmode/1781174141729-1vz8.jpeg"
-      ],
-      "featured": false,
-      "comingSoon": false,
       "order": 9,
       "caseStudy": {
-        "challenge": "TagMode needed more than just an online store. The goal was to create a premium shopping experience that matched the brand's identity while solving common issues faced by Algerian e-commerce businesses: slow websites, poor mobile experiences, complicated checkout flows, and limited payment options. The platform also needed to be scalable, easy to manage, and capable of handling future growth without sacrificing performance.",
-        "approach": "I designed and developed a modern e-commerce platform focused on speed, usability, and conversion.\n\nBuilt the frontend with Next.js for high performance, SEO, and fast page loading.\nUsed Framer Motion to create smooth transitions and premium micro-interactions that enhance the shopping experience.\nImplemented Firebase for product management, order handling, and scalable backend infrastructure.\nIntegrated Chargily to enable secure online payments tailored to the Algerian market.\nOptimized the entire experience for mobile devices, where most customers browse and shop.\nCreated a clean product discovery flow with category navigation, search, and streamlined checkout.",
-        "result": "The final product is a premium fashion e-commerce platform that combines luxury-brand aesthetics with modern web performance.\n\nFast and responsive experience across all devices.\nSeamless product browsing and checkout process.\nSecure online payment integration for Algerian customers.\nEasy-to-manage backend for products and orders.\nScalable architecture capable of supporting future business growth.\nStrong visual identity that reinforces the brand and improves customer trust.\n\nTech Stack: Next.js • Framer Motion • Firebase • Chargily\n\nLive Project: www.tagmodedz.com"
+        "challenge": "Barbershops lose walk-ins to long waits and have no clear view of their live queue.",
+        "approach": "A barber-facing app for live queues, appointments and requests, with staff profiles, analytics and offline Firebase sync.",
+        "result": "Real-time queue and appointment management that keeps working offline."
+      }
+    },
+    {
+      "id": "mdc",
+      "slug": "mdc-furniture",
+      "name": "MDC",
+      "alt": "أثاث الثقة",
+      "tagline": "A furniture house, scrolled like a film.",
+      "description": "A showcase for a furniture brand: hundreds of canvas frames scrubbed by scroll for a cinematic walkthrough, plus a 3D product gallery and a bilingual (FR/AR) storefront for beds, sofas and tables.",
+      "category": "Interactive · E-commerce",
+      "year": "2026",
+      "role": "Design & motion",
+      "stack": [
+        "Next.js",
+        "GSAP",
+        "Canvas frame-scrub",
+        "Three.js",
+        "next-intl"
+      ],
+      "status": "Live demo",
+      "links": {
+        "github": "https://github.com/ilyaaaaaaasazerty/mdc"
+      },
+      "images": [
+        "/projects/mdc/cover.png",
+        "/projects/mdc/g1.png",
+        "/projects/mdc/g2.png",
+        "/projects/mdc/frame.jpg"
+      ],
+      "featured": false,
+      "order": 10,
+      "caseStudy": {
+        "challenge": "Furniture is hard to sell online — photos and spec lists don't convey a piece in a room.",
+        "approach": "A scroll-scrubbed canvas walkthrough of hundreds of frames plus a 3D product gallery, in a bilingual FR/AR storefront.",
+        "result": "A furniture house you explore like a film, then shop in 3D."
       }
     },
     {
@@ -422,7 +460,12 @@
       "images": [],
       "featured": false,
       "comingSoon": true,
-      "order": 10
+      "order": 11,
+      "caseStudy": {
+        "challenge": "Embeddable chat for teams needs tenant isolation, audit trails and queues — not just a message box.",
+        "approach": "A widget-first platform with multi-tenant isolation, role-based access, webhooks and a BullMQ queue on NestJS, Prisma and Redis.",
+        "result": "Production-grade, embeddable chat infrastructure with isolation and auditing built in."
+      }
     },
     {
       "id": "chick",
@@ -441,11 +484,14 @@
       ],
       "status": "Production",
       "links": {},
-      "images": [
-        "/projects/chick/cover.png"
-      ],
+      "images": [],
       "featured": false,
-      "order": 11
+      "order": 12,
+      "caseStudy": {
+        "challenge": "Poultry farms work where the internet drops — but their tools assume it never does.",
+        "approach": "An offline-first Arabic RTL PWA on local PostgreSQL for flocks, workers and reports, falling back to a JSON store when the database is away.",
+        "result": "A farm-operations system that keeps running, and printing reports, with no internet."
+      }
     },
     {
       "id": "fadi-rental",
@@ -466,7 +512,12 @@
       "links": {},
       "images": [],
       "featured": false,
-      "order": 12
+      "order": 13,
+      "caseStudy": {
+        "challenge": "A rental agency ran its fleet, contracts and damage records on paper, with no offline-safe software.",
+        "approach": "An offline-first Windows app on local SQLite for fleet, clients, check-in/out and PDF contracts, with an optional booking site that syncs over REST.",
+        "result": "Desktop rental software that works offline, hardened with 24 smoke tests."
+      }
     },
     {
       "id": "cleanvision",
@@ -489,7 +540,67 @@
       },
       "images": [],
       "featured": false,
-      "order": 13
+      "order": 14,
+      "caseStudy": {
+        "challenge": "A premium cleaning company needed a site as polished as its service.",
+        "approach": "A cinematic site with a canvas glass-cleaning hero, before/after slider and process timeline, backed by a Supabase CMS with WhatsApp integration.",
+        "result": "A luxury marketing site the owner updates themselves, with leads flowing to WhatsApp."
+      }
+    },
+    {
+      "id": "tagmode",
+      "slug": "tagmode",
+      "name": "TagMode",
+      "tagline": "A fashion storefront for men and women.",
+      "description": "A fashion e-commerce platform with category browsing, checkout, an admin inventory panel and Chargily payments — dark mode by default, with Firestore-backed products.",
+      "category": "E-commerce",
+      "year": "2026",
+      "role": "Full-stack",
+      "stack": [
+        "Next.js 16",
+        "Firebase",
+        "Framer Motion",
+        "Chargily"
+      ],
+      "status": "In development",
+      "links": {},
+      "images": [],
+      "featured": false,
+      "comingSoon": true,
+      "order": 15,
+      "caseStudy": {
+        "challenge": "A fashion label needed an online store with real inventory control and local payments.",
+        "approach": "A dark-mode store with category browsing, checkout, an admin inventory panel and Chargily payments on Firestore.",
+        "result": "A men's and women's storefront with inventory management and Algerian payment rails."
+      }
+    },
+    {
+      "id": "auto-showroom",
+      "slug": "auto-showroom",
+      "name": "Auto Showroom",
+      "tagline": "A cinematic landing experience for car dealerships.",
+      "description": "A resellable, GSAP-driven landing experience for high-end dealerships: featured vehicles, an inventory grid, test-drive booking and WhatsApp lead capture, all configurable from a single site config.",
+      "category": "Template · Marketing",
+      "year": "2026",
+      "role": "Design & front-end",
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "GSAP",
+        "Tailwind"
+      ],
+      "status": "Live demo",
+      "links": {},
+      "images": [
+        "/projects/auto-showroom/cover.png"
+      ],
+      "featured": false,
+      "order": 16,
+      "caseStudy": {
+        "challenge": "Dealerships want a striking landing site but can't afford a custom build each time.",
+        "approach": "A resellable, GSAP-driven landing experience — featured cars, inventory grid, test-drive booking and WhatsApp leads — all driven by one site config.",
+        "result": "A cinematic dealership template re-skinned from a single config file."
+      }
     }
   ]
 }
