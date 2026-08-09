@@ -25,7 +25,7 @@ export default function CoverImage({ project, index = 0, className = "" }: Props
           alt={project.name}
           loading="lazy"
           onError={() => setErrored(true)}
-          className="h-full w-full select-none object-cover grayscale-[0.5] contrast-[1.05] transition-[transform,filter] duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-hover:grayscale-0"
+          className="h-full w-full select-none object-contain p-6 grayscale-[0.5] contrast-[1.05] transition-[transform,filter] duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:grayscale-0 md:p-8"
           draggable={false}
         />
       ) : (
