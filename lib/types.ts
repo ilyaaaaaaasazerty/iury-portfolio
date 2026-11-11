@@ -50,12 +50,54 @@ export interface Project {
   spotlight?: boolean;
   /** Marks an unfinished project — shows a "Coming soon" badge. */
   comingSoon?: boolean;
+  /** Kept in Studio but left off the public site. */
+  hidden?: boolean;
   caseStudy?: CaseStudy;
   order: number;
   i18n?: {
     fr?: ProjectI18n;
     ar?: ProjectI18n;
   };
+  /** Where the project came from: hand-curated in Studio, or pulled from GitHub. */
+  source?: "manual" | "github";
+  /** Live repository data, attached when the project is backed by a GitHub repo. */
+  repo?: RepoMeta;
+}
+
+/** The subset of a GitHub repository the site displays. */
+export interface RepoMeta {
+  name: string;
+  fullName: string;
+  url: string;
+  description: string;
+  homepage?: string;
+  language?: string;
+  stars: number;
+  forks: number;
+  topics: string[];
+  fork: boolean;
+  archived: boolean;
+  createdAt: string;
+  pushedAt: string;
+}
+
+/** Per-repo display overrides, set from the Studio's GitHub tab. */
+export interface RepoOverride {
+  name?: string;
+  tagline?: string;
+  category?: string;
+}
+
+/** data/github.json — which repos appear on the site, and how. */
+export interface GithubConfig {
+  username: string;
+  /** When true, new repos appear automatically unless explicitly hidden. */
+  autoInclude: boolean;
+  includeForks: boolean;
+  /** Explicit per-repo choices (repo name → shown). Repos not listed follow autoInclude. */
+  visibility: Record<string, boolean>;
+  featured: string[];
+  overrides: Record<string, RepoOverride>;
 }
 
 export interface Socials {

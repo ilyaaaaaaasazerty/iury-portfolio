@@ -1,20 +1,19 @@
-# IURY — Cinematic Portfolio
+# IURY — Belkhiri Abdelaziz's portfolio
 
-The portfolio of **Belkhiri Abdelaziz** — autoentrepreneur & AI researcher — built around the IURY logo: a camera **aperture** that opens on scroll to reveal the work, with cinematic film language throughout (focus pulls, film grain, a viewfinder HUD, a focus‑reticle cursor, and projects shown as numbered film *frames*).
+The portfolio of **Belkhiri Abdelaziz** — autoentrepreneur & AI researcher — presented by **IURY**, his robot assistant.
 
-Pure monochrome. Trilingual **EN / FR / AR** with full right‑to‑left support. Comes with a local **Studio** dashboard to manage projects and images without touching code.
+IURY is a live, hand-rigged SVG robot that stays on screen (left pane on desktop, a floating head on mobile). He tracks the cursor with his eyes, blinks, rolls his treads when you scroll, changes pose and chest-screen mood per section, points at and describes whichever project you hover, and reacts when clicked. Trilingual **EN / FR / AR** with full right-to-left support.
+
+Projects are **pulled from GitHub automatically** and merged with any hand-curated projects.
 
 ---
 
 ## Stack
 
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **Tailwind CSS v4**
-- **Lenis** (smooth scroll) · **Framer Motion** · custom scroll‑scrub aperture
-- Content stored as **local JSON** (`data/`) — no database
-- Fonts: Instrument Serif (titles) · Hanken Grotesk (UI) · JetBrains Mono (labels) · IBM Plex Sans Arabic (RTL)
-
----
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** · **Framer Motion** · **Lenis**
+- Content in local JSON (`data/`) — no database
+- Fonts: Space Grotesk (display) · Hanken Grotesk (UI) · JetBrains Mono · IBM Plex Sans Arabic
 
 ## Getting started
 
@@ -24,66 +23,49 @@ npm run dev          # http://localhost:3000   (site)
                      # http://localhost:3000/studio   (dashboard)
 ```
 
-Production:
+## GitHub projects
 
-```bash
-npm run build
-npm run start
-```
+The site reads `https://api.github.com/users/<username>/repos` and re-checks **every hour** (ISR), so a new repo shows up without a redeploy.
 
----
+Pick what appears in **Studio → GitHub**:
 
-## Managing content — the Studio
+- **Show / hide** each repo. With *Show new repos automatically* on, anything you push later appears unless you hide it; turn it off to show only repos you switch on.
+- **★ Featured** makes a card span two columns.
+- **Edit** overrides the display name, category or tagline (defaults: repo name, first topic or language, repo description).
+- **Curate** copies a repo into the Projects tab so you can add screenshots, a case study and translations. A curated project linked to a repo (same GitHub URL, or same slug as the repo name) is merged with it instead of appearing twice — hiding the repo hides that project too.
 
-Open **/studio** while running `npm run dev`.
+Choices are saved to `data/github.json`. Each Studio sync also writes `data/github-cache.json`, used as a fallback if GitHub can't be reached at build time — commit it.
 
-**Projects tab**
-- **+ Add** a project, or pick one from the list.
-- Drag‑free reorder with the ▲ ▼ arrows (order = order on the site).
-- **Images** — click *Add image* (or drop files). The **first image is the cover**; hover any image to *★ Make cover* or remove it. Files are saved into `public/projects/<id>/`.
-- Edit name, tagline, description, category, year, role, status, stack, links.
-- Toggle **Featured** (featured projects get larger frames + appear under the *Featured* filter).
-- **Translations** — optional French & Arabic per project; blank fields fall back to English.
+Optional: set `GITHUB_TOKEN` to raise the API rate limit.
 
-**Profile tab** — your name, roles, email, availability, social links, and localized tagline/bio (EN/FR/AR). Stats & capabilities are edited as JSON (click *Apply JSON*, then *Save*).
+## Studio
 
-Click **Save changes** to write to `data/projects.json` / `data/profile.json`.
+Open **/studio** while running `npm run dev`:
 
-> The dev server reflects your edits live. To publish, commit the changed `data/` + `public/projects/` files and redeploy (the public site is statically generated at build time).
+- **Projects** — curated projects: images (first is the cover), copy, stack, links, *Featured*, *Spotlight* (shows in Deep dives), *Coming soon*, FR/AR translations.
+- **GitHub** — see above.
+- **Profile** — name, roles, availability, socials, bio/statement, stats, services, process, capabilities.
 
----
+The Studio's write APIs are disabled in production unless `ENABLE_STUDIO=true`. Edit locally, commit `data/` + `public/projects/`, redeploy.
 
 ## Project structure
 
 ```
-app/
-  (site)/          # public portfolio (smooth scroll, grain, cursor overlays)
-    layout.tsx
-    page.tsx
-  studio/page.tsx  # the dashboard (noindex, no overlays)
-  api/             # projects / profile / upload  (write-gated)
-  layout.tsx       # fonts + metadata
-  globals.css      # design tokens + cinematic CSS
-components/        # aperture, hero, work gallery, modal, studio, …
-data/              # projects.json + profile.json  ← your content
-lib/               # types, i18n, data access, aperture geometry
-public/projects/   # uploaded project images
+app/(site)/page.tsx      # fetches profile + merged projects (revalidate: 1h)
+app/api/github/          # repo list + selection for the Studio
+components/robot.tsx     # IURY: the rigged, animated SVG robot
+components/iury-context  # what IURY says/does: section narration + reactions
+components/stage.tsx     # sticky IURY pane, nav, mobile companion
+components/modules.tsx   # intro, about, skills, contact
+components/work-gallery  # GitHub-synced projects grid + modal
+components/deep-dives    # spotlight case studies
+lib/github.ts            # GitHub fetch, config, cache (server)
+lib/repos.ts             # repo → project merge rules (shared)
+data/                    # profile.json, projects.json, github.json
 ```
 
----
+## Customizing
 
-## Deployment
-
-Deploys anywhere that runs Next.js (Vercel, Netlify) or as a static export. Images use `unoptimized` so they work on any host.
-
-**Security:** the Studio's write APIs are disabled in production by default, so a deployed site cannot be edited by visitors. Edit locally with `npm run dev`. To deliberately enable the dashboard on a server, set `ENABLE_STUDIO=true`.
-
----
-
-## Customizing the look
-
-- **Colors & type:** `app/globals.css` (`@theme` block).
-- **The IURY mark / aperture** is generated geometry — `lib/aperture.ts` + `components/iury-mark.tsx`. Tune `span` / `swirl` / `ri` / `ro` to reshape the iris.
-- **Sections & copy:** `lib/i18n.ts` (UI strings, all three languages).
-
-Built with care — no templates, no stock layouts.
+- **Colours & type:** `app/globals.css` (`@theme`).
+- **IURY's poses:** the `RIGS` table in `components/robot.tsx` (joint angles, eyelids, bounce).
+- **What IURY says:** `lib/i18n.ts` (`*.note`, `iury.*` keys) in all three languages.

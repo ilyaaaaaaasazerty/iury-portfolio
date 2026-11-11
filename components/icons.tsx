@@ -103,3 +103,19 @@ export function IconDrag({ size, className, strokeWidth }: IconProps) {
     </svg>
   );
 }
+
+export function IconStar({ size, className, strokeWidth }: IconProps) {
+  return (
+    <svg {...base(size, strokeWidth, className)}>
+      <path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8L12 3Z" />
+    </svg>
+  );
+}
+
+export function IconRefresh({ size, className, strokeWidth }: IconProps) {
+  return (
+    <svg {...base(size, strokeWidth, className)}>
+      <path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16m0 4v-4h-4" />
+    </svg>
+  );
+}

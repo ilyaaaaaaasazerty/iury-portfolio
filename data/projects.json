@@ -1,401 +1,129 @@
 {
   "projects": [
     {
-      "id": "medico",
-      "slug": "mdc",
-      "name": "Medico",
-      "tagline": "One platform connecting patients, doctors, clinics and labs.",
-      "description": "A full-stack healthcare monorepo. Patients book care and carry their records on a React Native app, while doctors, clinics, labs and hospitals run their workflows from a Next.js dashboard — backed by Express, Prisma and PostgreSQL with role-based access throughout.",
-      "category": "HealthTech · SaaS",
+      "id": "sayroura",
+      "slug": "realestate",
+      "name": "Sayroura",
+      "tagline": "From the reservation to the handover of keys — the operating system for Algerian property developers.",
+      "description": "A multi-tenant SaaS that runs a property developer end to end: inventory and price lists, a sales CRM, reservations and off-plan sales (VSP) with payment schedules, receipts and reminders, treasury and accounting exports, construction follow-up and deliveries, then the residence itself — co-ownership charges, general assemblies, rentals — plus a portal where buyers follow their payments and their building. Bilingual French / Arabic (RTL), with a live 3D « Maquette » of every project and an AI assistant for the operators.",
+      "category": "PropTech · SaaS",
       "year": "2026",
-      "role": "Full-stack architect",
-      "stack": [
-        "Turborepo",
-        "Express",
-        "Prisma",
-        "PostgreSQL",
-        "React Native",
-        "Next.js"
-      ],
-      "status": "In development",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/Medico"
-      },
-      "images": [
-        "/projects/medico/1781171772478-8xl3.png",
-        "/projects/medico/1781171791856-g1bu.jfif",
-        "/projects/medico/1781171791919-hu4b.jfif",
-        "/projects/medico/1781171791986-fh0d.jfif",
-        "/projects/medico/1781171792033-2c23.jfif",
-        "/projects/medico/1781171792072-10ni.jfif",
-        "/projects/medico/1781171792117-8nsc.jfif",
-        "/projects/medico/1781171792151-gp5e.jfif",
-        "/projects/medico/1781171792188-5wjb.jfif",
-        "/projects/medico/1781171792224-6lmk.jfif",
-        "/projects/medico/1781171792260-a6xb.jfif",
-        "/projects/medico/1781171792296-4rjj.jfif",
-        "/projects/medico/1781171792338-ahwh.jfif",
-        "/projects/medico/1781171792378-htw9.jfif",
-        "/projects/medico/1781171792419-2o2a.jfif",
-        "/projects/medico/1781171792466-1jv7.jfif",
-        "/projects/medico/1781171792516-7x50.jfif",
-        "/projects/medico/1781171792566-7aox.jfif",
-        "/projects/medico/1781171792603-95od.jfif",
-        "/projects/medico/1781171792638-8nr2.jfif",
-        "/projects/medico/1781171792672-179x.jfif",
-        "/projects/medico/1781171792704-g4j1.jfif"
-      ],
-      "featured": false,
-      "order": 1,
-      "i18n": {
-        "fr": {
-          "tagline": "Une plateforme reliant patients, médecins, cliniques et laboratoires."
-        },
-        "ar": {
-          "tagline": "منصّة واحدة تربط المرضى والأطباء والعيادات والمخابر."
-        }
-      },
-      "caseStudy": {
-        "challenge": "Healthcare in many regions is fragmented: patients juggle multiple apps to find doctors, book labs, manage records, and arrange transport. Providers (clinics, labs, doctors) operate in silos with no unified workflow tool. The goal was to build a single platform that connects patients, doctors, clinics, labs, and transport providers — with role-based access, real-time coordination, and a scalable backend.",
-        "approach": "Built as a Turborepo monorepo with three apps sharing a common backend:\n\n- Backend — Node.js + Express + TypeScript, PostgreSQL via Prisma, Redis for caching/rate limiting, BullMQ for async jobs (notifications, PDF generation), S3 for file storage\n- Mobile — React Native + Expo with role-based navigation (patient, doctor, clinic admin, lab admin, transport provider)\n- Web — Next.js 14 admin dashboard for system oversight, verifications, audit logs, and finance\n\nA polymorphic User model drives 7 distinct roles under one authentification system. Over 30 services handle domain logic (appointments, prescriptions, lab requests, payments, messaging, blood donation, emergency).",
-        "result": "A fully integrated healthcare platform with:\n- End-to-end patient journey: search → book → consult → lab → prescription → records\n- Multi-role provider tools for clinics, labs, and doctors\n- Admin visibility across all operations (audit logs, analytics, support, finance)\n- Production-ready infrastructure: JWT authentification, rate limiting, Prometheus metrics, structured logging",
-        "metrics": []
-      },
-      "comingSoon": true,
-      "spotlight": true
-    },
-    {
-      "id": "greenfood",
-      "slug": "greenfood",
-      "name": "Greenfood",
-      "tagline": "A real-time operating system for restaurants.",
-      "description": "A restaurant OS built as a monorepo: QR-table ordering for guests, live tickets for the kitchen, a driver portal, and an admin dashboard — all synchronized in real time over Socket.IO with JWT auth and role-based access.",
-      "category": "SaaS · Realtime",
-      "year": "2026",
-      "role": "Full-stack engineer",
-      "stack": [
-        "Next.js",
-        "Express",
-        "Socket.IO",
-        "Prisma",
-        "PostgreSQL"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/greenfoood"
-      },
-      "images": [
-        "/projects/greenfood/cover.png",
-        "/projects/greenfood/m1.jpg",
-        "/projects/greenfood/m2.jpg",
-        "/projects/greenfood/m3.jpg"
-      ],
-      "featured": false,
-      "order": 2
-    },
-    {
-      "id": "optivision",
-      "slug": "optivision",
-      "name": "OptiVision",
-      "tagline": "A vision laboratory — WebGL try-on and AI face analysis for eyewear.",
-      "description": "A dark-luxury optician platform that opens with a scroll-driven cinematic sequence — a WebGL iris, a vision tunnel, an AI face scan — before revealing virtual try-on over live webcam, face-shape analysis with tailored frame matches, an AI stylist quiz, and clinical dashboards for optometrists.",
-      "category": "AI · WebGL · HealthTech",
-      "year": "2026",
-      "role": "Design & engineering",
-      "stack": [
-        "Next.js",
-        "React Three Fiber",
-        "GSAP",
-        "Framer Motion",
-        "Face mesh"
-      ],
-      "status": "Prototype",
-      "links": {},
-      "images": [
-        "/projects/optivision/cover.png"
-      ],
-      "featured": true,
-      "spotlight": true,
-      "order": 3,
-      "caseStudy": {
-        "challenge": "Buying glasses online is guesswork — people can't tell which frames suit their face, and most optician sites feel like spreadsheets.",
-        "approach": "I built a vision laboratory: a scroll-driven WebGL intro (iris, vision tunnel, AI face scan), live-webcam virtual try-on, face-shape analysis that matches frames, and an AI stylist quiz — wrapped in dark-luxury motion, with optometrist dashboards behind it.",
-        "result": "A cinematic prototype that turns frame selection into an experience, pairing real computer-vision try-on with clinical tooling.",
-        "metrics": [
-          {
-            "value": "WebGL",
-            "label": "real-time 3D experience"
-          },
-          {
-            "value": "AI",
-            "label": "face-shape matching"
-          },
-          {
-            "value": "2",
-            "label": "pro dashboards"
-          }
-        ]
-      },
-      "i18n": {
-        "fr": {
-          "tagline": "Un laboratoire de la vision — essayage WebGL et analyse du visage par IA."
-        },
-        "ar": {
-          "tagline": "مختبرٌ للرؤية — تجربة نظارات بـ WebGL وتحليل للوجه بالذكاء الاصطناعي."
-        }
-      }
-    },
-    {
-      "id": "gadastore",
-      "slug": "gadastore",
-      "name": "GADASTORE",
-      "tagline": "A luxury fashion store that feels like a native iOS app.",
-      "description": "A premium, trilingual (EN/FR/AR) fashion PWA with edge-to-edge campaign photography, optical-glass UI, spring-physics swipe navigation and an Apple-Photos-style rising product sheet. Installable, offline-ready, and tuned for Algeria with cash-on-delivery checkout.",
-      "category": "E-commerce · PWA",
-      "year": "2026",
-      "role": "Design & front-end",
+      "role": "Founder · full-stack architect",
       "stack": [
         "Next.js 16",
         "React 19",
-        "Tailwind v4",
-        "Framer Motion",
-        "Lenis",
-        "Remotion"
+        "TypeScript",
+        "PostgreSQL · RLS",
+        "Drizzle",
+        "Better Auth",
+        "pg-boss",
+        "three.js",
+        "Playwright",
+        "OpenAI"
       ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/gadastore"
-      },
-      "images": [
-        "/projects/gadastore/g1.png",
-        "/projects/gadastore/cover.png",
-        "/projects/gadastore/g2.png",
-        "/projects/gadastore/g3.png",
-        "/projects/gadastore/g4.png"
-      ],
-      "featured": true,
-      "order": 4,
-      "i18n": {
-        "fr": {
-          "tagline": "Une boutique de mode de luxe qui se vit comme une app iOS native."
-        },
-        "ar": {
-          "tagline": "متجر أزياء فاخر يبدو كتطبيق iOS أصيل."
-        }
-      }
-    },
-    {
-      "id": "project-mq9dmnbg",
-      "slug": "pos",
-      "name": "Mon Magasin",
-      "tagline": "",
-      "description": "A mobile-first platform that helps business owners manage sales, inventory, suppliers, customer debts, and employee activity from a single dashboard. The system includes an AI assistant that provides insights, answers business questions, and helps streamline daily operations, enabling smarter and more efficient business management.",
-      "category": "Mobile App",
-      "year": "2026",
-      "role": "Full Stack Engineer",
-      "stack": [
-        "React Native",
-        "Expo",
-        "Firebase",
-        "OpenAI API",
-        "Javascript"
-      ],
-      "status": "In development",
+      "status": "Pilot-ready",
       "links": {},
       "images": [
-        "/projects/project-mq9dmnbg/1781175171211-jcfr.png",
-        "/projects/project-mq9dmnbg/1781175916318-a23q.jfif",
-        "/projects/project-mq9dmnbg/1781175916437-d0zs.jfif",
-        "/projects/project-mq9dmnbg/1781175916549-inm3.jfif",
-        "/projects/project-mq9dmnbg/1781175916628-3sa3.jfif",
-        "/projects/project-mq9dmnbg/1781175916701-fckh.jfif",
-        "/projects/project-mq9dmnbg/1781175916750-d3uu.jfif",
-        "/projects/project-mq9dmnbg/1781175916805-4zlu.jfif",
-        "/projects/project-mq9dmnbg/1781175916862-ewpe.jfif",
-        "/projects/project-mq9dmnbg/1781175916911-0vo3.jpg",
-        "/projects/project-mq9dmnbg/1781175916973-3dmq.jpg"
+        "/projects/sayroura/maquette.webp",
+        "/projects/sayroura/dashboard.webp",
+        "/projects/sayroura/landing.webp",
+        "/projects/sayroura/pipeline.webp",
+        "/projects/sayroura/portal.webp"
       ],
-      "featured": false,
-      "order": 5,
-      "caseStudy": {
-        "challenge": "Small businesses often rely on notebooks, spreadsheets, and multiple apps to manage sales, inventory, suppliers, and customer debts, leading to inefficiencies and poor visibility into daily operations.",
-        "approach": "Built a mobile-first POS platform that centralizes sales, inventory management, supplier tracking, customer debts, employee access, and AI-powered business insights into a single system.",
-        "result": "Enabled business owners to manage their entire operation from one app, improving efficiency, inventory control, financial tracking, and decision-making through real-time data and AI assistance."
-      },
-      "i18n": {
-        "fr": {
-          "description": "Une plateforme priorisant l'usage mobile qui aide les chefs d'entreprise à gérer les ventes, les stocks, les fournisseurs, les dettes clients et l'activité des employés depuis un tableau de bord unique. Le système comprend un assistant IA qui fournit des analyses, répond aux questions professionnelles et aide à rationaliser les opérations quotidiennes, permettant une gestion d'entreprise plus intelligente et plus efficace."
-        },
-        "ar": {
-          "description": "\"منصة تركز على الأجهزة المحمولة تساعد أصحاب الأعمال على إدارة المبيعات، والمخزون، والموردين، وديون العملاء، وأنشطة الموظفين من خلال لوحة تحكم واحدة. يشتمل النظام على مساعد للذكاء الاصطناعي يقدم التحليلات، ويجيب على الاستفسارات المهنية، ويساعد في تبسيط العمليات اليومية، مما يتيح إدارة أعمال أكثر ذكاءً وكفاءة.\""
-        }
-      }
-    },
-    {
-      "id": "gestion-pos",
-      "slug": "gestion-pos",
-      "name": "Gestion POS",
-      "tagline": "A point-of-sale you operate by voice — in Algerian Darija.",
-      "description": "A retail point-of-sale with desktop and mobile clients and an AI voice assistant that understands Algerian Darija, French and Arabic. Barcode scanning, biometric auth, credit and supplier management, expense tracking and offline SQLite storage with real-time reporting.",
-      "category": "AI · Retail",
-      "year": "2026",
-      "role": "Full-stack & AI",
-      "stack": [
-        "Electron",
-        "React",
-        "better-sqlite3",
-        "Fastify",
-        "OpenAI",
-        "React Native"
-      ],
-      "status": "In development",
-      "links": {},
-      "images": [
-        "/projects/gestion-pos/1781203200911-2f6d.png",
-        "/projects/gestion-pos/1781202154783-a35n.jpeg",
-        "/projects/gestion-pos/1781202154820-97o3.jpeg",
-        "/projects/gestion-pos/1781202154854-7zc5.jpeg",
-        "/projects/gestion-pos/1781202154888-6t4i.jpeg",
-        "/projects/gestion-pos/1781202154925-5a8c.jpeg",
-        "/projects/gestion-pos/1781202154965-ks3g.jpeg",
-        "/projects/gestion-pos/1781202155005-22in.jpeg",
-        "/projects/gestion-pos/1781202155042-kiv0.jpeg",
-        "/projects/gestion-pos/1781202155082-k6ii.jpeg",
-        "/projects/gestion-pos/1781202155133-ax54.jpeg",
-        "/projects/gestion-pos/1781202155171-77xl.jpeg",
-        "/projects/gestion-pos/1781202806470-1o5h.jpeg",
-        "/projects/gestion-pos/1781202806515-iusy.jpeg",
-        "/projects/gestion-pos/1781202806553-agcw.jpeg",
-        "/projects/gestion-pos/1781202806589-1jqx.jpeg",
-        "/projects/gestion-pos/1781202806625-kwsj.jpeg",
-        "/projects/gestion-pos/1781202806663-0vf5.jpeg",
-        "/projects/gestion-pos/1781202806703-b78o.jpeg",
-        "/projects/gestion-pos/1781202806744-4so6.jpeg",
-        "/projects/gestion-pos/1781202806784-k8il.jpeg"
-      ],
-      "featured": true,
-      "order": 6,
-      "i18n": {
-        "fr": {
-          "tagline": "Une caisse que l'on pilote à la voix — en derja algérienne."
-        },
-        "ar": {
-          "tagline": "نقطة بيع تُدار بالصوت — بالدارجة الجزائرية."
-        }
-      },
-      "caseStudy": {
-        "challenge": "Small businesses were struggling with fragmented operations across inventory, supplier management, debt tracking, expenses, and reporting. Manual processes led to errors, delayed supplier orders, and poor visibility into business performance.",
-        "approach": "Built a full-stack POS ecosystem consisting of a desktop/web POS and a synchronized mobile application. Developed modules for inventory management, supplier orders, supplier settlements, debt tracking, expenses, and real-time reporting. Integrated an AI assistant capable of understanding text and voice commands in Algerian Darija, allowing users to perform actions such as generating and printing supplier orders instantly without navigating through multiple screens. The system was built with a focus on automation, accessibility, and real-time data synchronization.",
-        "result": "Reduced administrative workload by automating repetitive business operations and document generation. Enabled business owners to manage their entire operation from both desktop and mobile devices while interacting naturally with the system using Darija voice and text commands. Supplier orders that previously required multiple manual steps can now be generated, approved, and printed within seconds through AI-powered interactions."
-      }
-    },
-    {
-      "id": "ilmi",
-      "slug": "ilmi",
-      "name": "ILMI",
-      "alt": "علمي",
-      "tagline": "An AI exam-prep arena where students duel to learn.",
-      "description": "A competition-driven learning platform for Algerian BEM and BAC students. Ranked duels score genuine thinking time rather than connection speed, an AI tutor stays strictly inside the official Ministry curriculum, and an AI coach forecasts exam scores using real coefficients — all wrapped in an Arabic, right-to-left 'Knowledge City' game world.",
-      "category": "AI · EdTech",
-      "year": "2026",
-      "role": "Founder · Product & AI architecture",
-      "stack": [
-        "Flutter",
-        "Flame",
-        "Firebase",
-        "Cloud Functions",
-        "AI Tutoring"
-      ],
-      "status": "In development",
-      "links": {},
-      "images": [],
       "featured": true,
       "spotlight": true,
-      "order": 7,
-      "caseStudy": {
-        "challenge": "Algerian students grind for the BEM and BAC, yet ranked study apps reward fast fingers and internet speed — not real thinking. And generic AI tutors happily answer outside the syllabus.",
-        "approach": "I designed a competitive 'Knowledge City' where duels score genuine reasoning time, an AI tutor hard-bounded to the official Ministry curriculum, and an AI coach that forecasts exam outcomes from real grading coefficients — Arabic-first and fully right-to-left.",
-        "result": "A complete product architecture — five distinct AI roles, a curriculum knowledge base, and exam-coefficient modelling — built for the 2026 BEM & BAC cohorts.",
-        "metrics": [
-          {
-            "value": "5",
-            "label": "AI roles architected"
-          },
-          {
-            "value": "2",
-            "label": "national exams targeted"
-          },
-          {
-            "value": "RTL",
-            "label": "Arabic-first by design"
-          }
-        ]
-      },
+      "order": 1,
       "i18n": {
         "fr": {
-          "tagline": "Une arène d'IA où les élèves s'affrontent pour apprendre."
+          "tagline": "De la réservation à la remise des clés — le système d'exploitation des promoteurs immobiliers algériens.",
+          "description": "Un SaaS multi-tenant qui fait tourner un promoteur de bout en bout : stock et grilles de prix, CRM, réservations et ventes sur plans (VSP) avec échéanciers, reçus et relances, trésorerie et exports comptables, suivi de chantier et livraisons, puis la résidence elle-même — charges de copropriété, assemblées générales, locations — et un espace client où l'acquéreur suit ses paiements et son immeuble. Bilingue français / arabe, avec une « Maquette » 3D vivante de chaque programme et un assistant IA pour les opérateurs."
         },
         "ar": {
-          "tagline": "حلبة ذكاء اصطناعي يتبارى فيها الطلاب ليتعلّموا."
+          "tagline": "من الحجز إلى تسليم المفاتيح — نظام التشغيل للمرقّين العقاريين في الجزائر.",
+          "description": "منصّة SaaS متعددة المستأجرين تُدير المرقّي العقاري من البداية إلى النهاية: المخزون وقوائم الأسعار، وإدارة العملاء، والحجوزات والبيع على التصاميم مع جداول الدفع والإيصالات والتذكيرات، والخزينة والتصدير المحاسبي، ومتابعة الورشة والتسليم، ثم إدارة الإقامة نفسها — أعباء الملكية المشتركة والجمعيات العامة والإيجارات — مع فضاء للمشتري يتابع فيه دفعاته وبنايته. ثنائية اللغة فرنسية / عربية، مع « ماكيت » ثلاثية الأبعاد حيّة لكل مشروع ومساعد بالذكاء الاصطناعي للمشغّلين."
         }
+      },
+      "caseStudy": {
+        "challenge": "Algerian property developers sell apartments off-plan years before the keys are handed over, and the whole cycle — stock, prospects, reservations, VSP contracts under Loi 11-04, payment calls tied to construction milestones, receipts, reminders, then co-ownership once the building is delivered — usually lives in Excel sheets, paper receipt books and WhatsApp. Buyers can't see what they owe or how the building is progressing, and managers have no single picture of sales, cash and the site. Everything has to work in French and Arabic, in dinars, and hold up legally.",
+        "approach": "One Next.js 16 app on PostgreSQL, built so a company's data can never leak to another: every tenant table gets forced row-level security from a migration hook, with composite foreign keys and a test that fails CI if any table is missing it. Money is integer centimes, documents are numbered without gaps, and every change is audited. Background work (bilingual PDFs rendered by headless Chromium, e-mails, reminders, nightly digests) runs in a pg-boss worker, enqueued in the same transaction as the business write. On top sit the modules — inventory, CRM, sales and schedules, treasury and accounting exports, construction and deliveries, rentals, residence management, a buyer portal with card payments through SATIM and e-signature — plus a three.js « Maquette » that draws every project in 3D through lenses (sales, market, collections, works), and an operator console with billing and an AI agent that triages the mailbox and drafts replies a human approves.",
+        "result": "In five weeks: a pilot-ready product covering the developer's whole cycle, from the first lead to the general assembly of the delivered residence. A seeded demo group — projects on sale, delivered residences, rentals, a building run as syndic for its co-owners — exercises every module, guarded by 155 unit/integration test files and 27 Playwright end-to-end suites. Pilots are open to developers, with launch prices set.",
+        "metrics": [
+          {
+            "value": "276",
+            "label": "Commits in 5 weeks"
+          },
+          {
+            "value": "129",
+            "label": "Tables under forced RLS"
+          },
+          {
+            "value": "27",
+            "label": "E2E suites"
+          }
+        ]
       }
     },
     {
-      "id": "lcoupa",
-      "slug": "lcoupa",
-      "name": "Lcoupa",
-      "tagline": "Live queue and appointment management for barbershops.",
-      "description": "A barber-facing app for live queues, appointments and order requests — with staff profiles, analytics, offline support and Firebase real-time sync.",
-      "category": "SaaS",
+      "id": "sayroura-pos",
+      "slug": "sayroura",
+      "name": "Sayroura POS",
+      "alt": "سيرورة",
+      "tagline": "Point of sale and multi-shop management for every kind of shop in Algeria.",
+      "description": "A Windows point of sale that adapts to the shop it runs in. In the first-run setup each shop picks its niche — fashion, hardware, grocery, cosmetics, phones and electronics, or general — and Sayroura sets up its variants (sizes × colours, formats × flavours, capacities…), units, starter families and features such as expiry lots or IMEI tracking. The till, stock per shop, cash sessions and Z reports, returns and exchanges, loyalty, compliant invoices, card terminals, LAN counters, shop-to-shop sync and a website connector come with every niche, in French and Arabic.",
+      "category": "Retail · Desktop",
       "year": "2026",
-      "role": "Full-stack",
+      "role": "Solo developer",
       "stack": [
-        "Next.js",
-        "Firebase",
-        "TanStack Query",
-        "Framer Motion"
+        "Electron",
+        "React 19",
+        "TypeScript",
+        "SQLite",
+        "Fastify",
+        "Vitest"
       ],
-      "status": "In development",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/Lcoupa"
-      },
-      "images": [
-        "/projects/lcoupa/cover.png",
-        "/projects/lcoupa/g1.png"
-      ],
-      "featured": false,
-      "order": 8
-    },
-    {
-      "id": "tagmode",
-      "slug": "tagmode",
-      "name": "TagMode",
-      "tagline": "A fashion storefront for men and women.",
-      "description": "A fashion e-commerce platform with category browsing, checkout, an admin inventory panel and Chargily payments — dark mode by default, with Firestore-backed products.",
-      "category": "E-commerce",
-      "year": "2026",
-      "role": "Full-stack",
-      "stack": [
-        "Next.js 16",
-        "Firebase",
-        "Framer Motion",
-        "Chargily"
-      ],
-      "status": "In development",
+      "status": "v1.0 released",
       "links": {},
       "images": [
-        "/projects/tagmode/1781174141762-4v0d.jpeg",
-        "/projects/tagmode/1781174141658-56fz.jpeg",
-        "/projects/tagmode/1781174141696-ahd3.jpeg",
-        "/projects/tagmode/1781174141729-1vz8.jpeg"
+        "/projects/sayroura-pos/till.webp",
+        "/projects/sayroura-pos/dashboard.webp",
+        "/projects/sayroura-pos/variant-picker.webp",
+        "/projects/sayroura-pos/catalogue.webp",
+        "/projects/sayroura-pos/article.webp",
+        "/projects/sayroura-pos/setup-niche.webp",
+        "/projects/sayroura-pos/till-dark.webp",
+        "/projects/sayroura-pos/welcome-ar-dark.webp"
       ],
-      "featured": false,
-      "comingSoon": false,
-      "order": 9,
+      "featured": true,
+      "spotlight": true,
+      "order": 2,
+      "i18n": {
+        "fr": {
+          "tagline": "Caisse et gestion multi-boutiques pour tous les commerces en Algérie.",
+          "description": "Une caisse Windows qui s'adapte au commerce où elle tourne. À la première installation, chaque boutique choisit son activité — mode, quincaillerie, supérette, cosmétique, téléphonie ou commerce général — et Sayroura prépare ses variantes (tailles × couleurs, formats × saveurs, capacités…), ses unités, ses familles et ses fonctions comme les lots à péremption ou le suivi IMEI. Caisse, stock par boutique, sessions et rapport Z, retours et échanges, fidélité, factures conformes, TPE, postes en réseau, synchronisation entre boutiques et connecteur de site web, en français et en arabe."
+        },
+        "ar": {
+          "tagline": "نقطة بيع وتسيير متعدد المحلات لكل أنواع التجارة في الجزائر.",
+          "description": "نقطة بيع لنظام Windows تتكيّف مع المحل الذي تعمل فيه. عند التثبيت يختار كل محل نشاطه — ملابس، أدوات وموادّ، مواد غذائية، تجميل، هواتف وإلكترونيات أو تجارة عامة — فيُهيّئ سيرورة متغيّراته (مقاسات × ألوان، أحجام × نكهات، سعات…) ووحداته وعائلاته ووظائفه مثل تواريخ الصلاحية أو تتبّع IMEI. الصندوق، والمخزون لكل محل، وجلسات الصندوق وتقرير Z، والإرجاع والاستبدال، والوفاء، والفواتير المطابقة، وأجهزة الدفع، والمراكز في الشبكة، والمزامنة بين المحلات، وربط الموقع — بالفرنسية والعربية."
+        }
+      },
       "caseStudy": {
-        "challenge": "TagMode needed more than just an online store. The goal was to create a premium shopping experience that matched the brand's identity while solving common issues faced by Algerian e-commerce businesses: slow websites, poor mobile experiences, complicated checkout flows, and limited payment options. The platform also needed to be scalable, easy to manage, and capable of handling future growth without sacrificing performance.",
-        "approach": "I designed and developed a modern e-commerce platform focused on speed, usability, and conversion.\n\nBuilt the frontend with Next.js for high performance, SEO, and fast page loading.\nUsed Framer Motion to create smooth transitions and premium micro-interactions that enhance the shopping experience.\nImplemented Firebase for product management, order handling, and scalable backend infrastructure.\nIntegrated Chargily to enable secure online payments tailored to the Algerian market.\nOptimized the entire experience for mobile devices, where most customers browse and shop.\nCreated a clean product discovery flow with category navigation, search, and streamlined checkout.",
-        "result": "The final product is a premium fashion e-commerce platform that combines luxury-brand aesthetics with modern web performance.\n\nFast and responsive experience across all devices.\nSeamless product browsing and checkout process.\nSecure online payment integration for Algerian customers.\nEasy-to-manage backend for products and orders.\nScalable architecture capable of supporting future business growth.\nStrong visual identity that reinforces the brand and improves customer trust.\n\nTech Stack: Next.js • Framer Motion • Firebase • Chargily\n\nLive Project: www.tagmodedz.com"
+        "challenge": "Most Algerian shops still run on a receipt book, Excel or a generic till that knows nothing about their trade: a clothing shop sells a size and a colour, not just an article; a hardware store sells by the metre; a grocery tracks expiry dates; a phone shop tracks every IMEI. On top of that, owners with several shops need stock and cash per shop, and every invoice has to follow Algerian rules — VAT per rate, stamp duty on cash, gapless numbering with NIF / NIS / RC — in French and Arabic.",
+        "approach": "One Electron app on SQLite, built for a shop's reality: a server PC per shop, thin counters on the local network, and shop-to-shop sync between servers. A first-run setup asks for the company, its fiscal identity and its shops, and each shop's niche configures the variant axes, units, starter families and features — so one codebase serves a boutique and a hardware store without forking. Stock is held per shop and per variant behind an atomic oversell guard; cash sessions close with a Z report; returns, exchanges and credit notes keep the books straight; factures are numbered without gaps and frozen at issue, and the monthly G50 is computed from the sales. Role-based rights with discount limits, loyalty, card terminals, label printing and a documented website connector round it out, under a liquid-glass interface in light and dark, French and Arabic.",
+        "result": "A Windows installer (v1.0) that a new shop configures in a few minutes. The codebase grew from GestionPOS, a wholesale distributor's tool, through a single clothing retailer, into a product for any kind of shop — 65 schema migrations later, with its business rules covered by 61 Vitest suites against real SQLite.",
+        "metrics": [
+          {
+            "value": "6",
+            "label": "Shop niches"
+          },
+          {
+            "value": "65",
+            "label": "Schema migrations"
+          },
+          {
+            "value": "61",
+            "label": "Test suites"
+          }
+        ]
       }
     },
     {
@@ -422,72 +150,7 @@
       "images": [],
       "featured": false,
       "comingSoon": true,
-      "order": 10
-    },
-    {
-      "id": "chick",
-      "slug": "chick",
-      "name": "Chick",
-      "tagline": "Offline-first operations for poultry farms.",
-      "description": "A poultry-operations system rebuilt offline-first on local PostgreSQL: layers, broilers, workers, partners, factories and printable reports — an Arabic RTL PWA that keeps running with no internet and falls back to a JSON store when the database is away.",
-      "category": "PWA · AgriTech",
-      "year": "2026",
-      "role": "Full-stack",
-      "stack": [
-        "Node.js",
-        "PostgreSQL",
-        "Vanilla JS PWA",
-        "Docker"
-      ],
-      "status": "Production",
-      "links": {},
-      "images": [],
-      "featured": false,
-      "order": 11
-    },
-    {
-      "id": "fadi-rental",
-      "slug": "fadi-location-auto",
-      "name": "Fadi Location Auto",
-      "tagline": "Desktop software for a car-rental agency, offline-first.",
-      "description": "An offline-first Windows app for a rental agency: fleet, clients, check-in/out, damage tracking and PDF contracts on a local SQLite database — with an optional public booking site that syncs cars and requests over a REST API. Hardened with 24 smoke tests.",
-      "category": "Desktop · Business",
-      "year": "2026",
-      "role": "Full-stack desktop",
-      "stack": [
-        "Electron",
-        "React",
-        "better-sqlite3",
-        "Next.js"
-      ],
-      "status": "Production · v0.2",
-      "links": {},
-      "images": [],
-      "featured": false,
-      "order": 12
-    },
-    {
-      "id": "cleanvision",
-      "slug": "cleanvision",
-      "name": "CleanVision",
-      "tagline": "A cinematic site for a premium cleaning company.",
-      "description": "A luxury cleaning-company site with a canvas glass-cleaning hero that wipes clear on scroll, a before/after slider, animated counters, a horizontal process timeline and a Supabase-backed admin CMS with WhatsApp integration.",
-      "category": "Marketing · CMS",
-      "year": "2026",
-      "role": "Design & front-end",
-      "stack": [
-        "Next.js",
-        "GSAP",
-        "Supabase",
-        "Tailwind"
-      ],
-      "status": "Live demo",
-      "links": {
-        "github": "https://github.com/ilyaaaaaaasazerty/cleanvision"
-      },
-      "images": [],
-      "featured": false,
-      "order": 13
+      "order": 3
     }
   ]
 }

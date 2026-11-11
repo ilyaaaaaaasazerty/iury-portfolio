@@ -1,0 +1,367 @@
+/* ==================================================================
+   ERP story — technical drawing on brushed-steel paper.
+   Tokens come from app/globals.css (@theme): paper, panel, shell, steel,
+   graphite, ink, mute, faint, line, line-2, signal.
+   ================================================================== */
+
+:root {
+  --erp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --erp-hair: color-mix(in srgb, var(--color-ink) 16%, transparent);
+  --erp-hair-2: color-mix(in srgb, var(--color-ink) 28%, transparent);
+  --erp-grid: color-mix(in srgb, var(--color-ink) 5%, transparent);
+  --erp-grid-2: color-mix(in srgb, var(--color-ink) 9%, transparent);
+  --erp-signal-soft: color-mix(in srgb, var(--color-signal) 16%, transparent);
+  --erp-signal-glow: color-mix(in srgb, var(--color-signal) 45%, transparent);
+  --erp-header: 56px;
+}
+
+/* ---------- page surfaces ---------- */
+
+.erp-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: clip;
+}
+
+/* engineering grid: fine 24px + major 120px */
+.erp-grid {
+  background-image:
+    linear-gradient(var(--erp-grid-2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--erp-grid-2) 1px, transparent 1px),
+    linear-gradient(var(--erp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--erp-grid) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+}
+
+/* faint brushed-steel sheen, for dark plates */
+.erp-steel {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, #2b2c31, #1b1c20);
+  color: #ecedf0;
+}
+
+.erp-ink {
+  background: var(--color-ink);
+  color: #ecedf0;
+}
+
+/* ---------- typography ---------- */
+
+.erp-kicker {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+html[dir="rtl"] .erp-kicker {
+  letter-spacing: 0.02em;
+}
+
+.erp-mono {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-display {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+html[dir="rtl"] .erp-display,
+html[dir="rtl"] .erp-body {
+  font-family: var(--font-arabic), "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.erp-body {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-mute);
+  text-wrap: pretty;
+}
+
+/* ---------- scroll primitives ---------- */
+
+.erp-stack {
+  display: grid;
+}
+.erp-stack > * {
+  grid-area: 1 / 1;
+}
+
+.erp-at {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.45s var(--erp-ease),
+    transform 0.7s var(--erp-ease);
+  pointer-events: none;
+}
+.erp-at[data-on] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.08s;
+}
+
+.erp-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 0.9s var(--erp-ease) var(--d, 0s),
+    transform 1s var(--erp-ease) var(--d, 0s);
+}
+.erp-reveal[data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- technical frame ---------- */
+
+.erp-frame {
+  position: relative;
+  border: 1px solid var(--erp-hair);
+  background: color-mix(in srgb, var(--color-panel) 70%, transparent);
+}
+.erp-frame > .erp-tick {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-color: var(--color-ink);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+.erp-tick.tl { top: -1px; left: -1px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.erp-tick.tr { top: -1px; right: -1px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.erp-tick.bl { bottom: -1px; left: -1px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.erp-tick.br { bottom: -1px; right: -1px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+.erp-frame-dark {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.025);
+}
+.erp-frame-dark > .erp-tick {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* dimension line with end ticks: <span class="erp-dim"> */
+.erp-dim {
+  position: relative;
+  display: block;
+  height: 1px;
+  background: var(--erp-hair-2);
+}
+.erp-dim::before,
+.erp-dim::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background: var(--erp-hair-2);
+}
+.erp-dim::before { left: 0; }
+.erp-dim::after { right: 0; }
+
+/* registration mark */
+.erp-reg {
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.erp-reg::before,
+.erp-reg::after {
+  content: "";
+  position: absolute;
+  background: var(--erp-hair-2);
+}
+.erp-reg::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.erp-reg::after { top: 50%; left: 0; right: 0; height: 1px; }
+
+/* ---------- chips, states, nodes ---------- */
+
+.erp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--erp-hair);
+  background: color-mix(in srgb, var(--color-panel) 80%, transparent);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: var(--color-graphite);
+  white-space: nowrap;
+}
+
+.erp-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--color-steel);
+  flex: none;
+}
+.erp-dot[data-lit] {
+  background: var(--color-signal);
+  box-shadow: 0 0 0 3px var(--erp-signal-soft), 0 0 10px var(--erp-signal-glow);
+}
+
+.erp-lit-text {
+  color: var(--color-signal-deep);
+}
+
+/* pulse ring replayed on each lighting (keyed by pulse count) */
+.erp-pulse {
+  position: absolute;
+  inset: -5px;
+  border: 1.5px solid var(--color-signal);
+  opacity: 0;
+  animation: erp-pulse 1.4s var(--erp-ease) 1;
+  pointer-events: none;
+}
+@keyframes erp-pulse {
+  0% { opacity: 0.9; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* flowing data along an SVG path: add class + stroke-dasharray="4 10" */
+.erp-flow {
+  animation: erp-flow 1.2s linear infinite;
+}
+@keyframes erp-flow {
+  to { stroke-dashoffset: -28; }
+}
+
+/* blinking cursor/LED */
+.erp-blink {
+  animation: erp-blink 1.1s steps(1) infinite;
+}
+@keyframes erp-blink {
+  50% { opacity: 0; }
+}
+
+.erp-breathe {
+  animation: erp-breathe 2.6s ease-in-out infinite;
+}
+@keyframes erp-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* ---------- header & rail ---------- */
+
+.erp-header {
+  height: var(--erp-header);
+  /* opaque instead of backdrop blur: a blurred fixed bar re-renders on every scroll frame */
+  background: color-mix(in srgb, var(--color-paper) 96%, transparent);
+  border-bottom: 1px solid var(--erp-hair);
+}
+
+.erp-rail {
+  transition: opacity 0.6s var(--erp-ease), transform 0.8s var(--erp-ease);
+}
+.erp-rail[data-hidden] {
+  opacity: 0;
+  transform: translate3d(16px, 0, 0);
+  pointer-events: none;
+}
+html[dir="rtl"] .erp-rail[data-hidden] {
+  transform: translate3d(-16px, 0, 0);
+}
+
+.erp-rail-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.18rem 0;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  color: var(--color-faint);
+  text-align: start;
+  transition: color 0.4s var(--erp-ease);
+}
+.erp-rail-node[data-lit] {
+  color: var(--color-ink);
+}
+.erp-rail-node:hover {
+  color: var(--color-ink);
+}
+.erp-rail-node .erp-dot {
+  position: relative;
+  transition: background 0.4s var(--erp-ease), box-shadow 0.4s var(--erp-ease);
+}
+
+/* ---------- screenshots ---------- */
+
+.erp-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--erp-hair);
+  background: var(--color-panel);
+  box-shadow: 0 30px 60px -40px rgba(19, 19, 22, 0.45);
+}
+
+/* ---------- motion safety ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-at,
+  .erp-reveal {
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+  }
+  .erp-flow,
+  .erp-pulse,
+  .erp-blink,
+  .erp-breathe {
+    animation: none !important;
+  }
+}
+
+/* reading direction as a number, for transforms that must mirror in RTL */
+.erp-page { --dir: 1; }
+html[dir="rtl"] .erp-page { --dir: -1; }
+
+/* scroll cue */
+.erp-cue {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  background: var(--erp-hair);
+  overflow: hidden;
+}
+.erp-cue::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: var(--color-signal);
+  animation: erp-cue 1.8s var(--erp-ease) infinite;
+}
+@keyframes erp-cue {
+  to { top: 100%; }
+}
+
+/* short screens (laptops with browser chrome, landscape phones) */
+@media (max-height: 760px) {
+  .erp-cue { height: 30px; }
+}
+
+/* short laptop screens: keep the whole map rail on screen */
+@media (max-height: 760px) {
+  .erp-rail .erp-maplist { gap: 0.4rem; }
+  .erp-rail .erp-rail-node { padding: 0.05rem 0; font-size: 0.68rem; }
+  .erp-rail .erp-kicker,
+  .erp-rail .erp-maplist p { margin-bottom: 0.2rem; }
+}

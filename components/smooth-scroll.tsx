@@ -8,10 +8,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // Short catch-up instead of a 1s+ glide: wheel input lands almost at once,
+      // just without the stepping. Touch stays native.
+      lerp: 0.2,
+      wheelMultiplier: 1.15,
       smoothWheel: true,
-      touchMultiplier: 1.4,
     });
 
     // expose for anchor scrolling

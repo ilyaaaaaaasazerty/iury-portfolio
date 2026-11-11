@@ -2,6 +2,8 @@ import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
 import type { Profile, Project } from "./types";
+import { fetchRepos, getGithubConfig } from "./github";
+import { mergeProjects } from "./repos";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const PROJECTS_FILE = path.join(DATA_DIR, "projects.json");
@@ -54,6 +56,13 @@ export async function saveProjects(projects: Project[]): Promise<void> {
 export async function saveProfile(profile: Profile): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(PROFILE_FILE, JSON.stringify(profile, null, 2), "utf-8");
+}
+
+/** What the public site shows: curated projects merged with the selected GitHub repos. */
+export async function getPortfolioProjects(): Promise<Project[]> {
+  const [curated, config] = await Promise.all([getProjects(), getGithubConfig()]);
+  const { repos } = await fetchRepos(config.username);
+  return mergeProjects(curated, repos, config);
 }
 
 export function getProjectBySlug(

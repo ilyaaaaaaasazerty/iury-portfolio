@@ -1,17 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import {
-  Instrument_Serif,
+  Space_Grotesk,
   Hanken_Grotesk,
   JetBrains_Mono,
   IBM_Plex_Sans_Arabic,
 } from "next/font/google";
 import "./globals.css";
 
-const serif = Instrument_Serif({
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
   display: "swap",
 });
 const hanken = Hanken_Grotesk({
@@ -27,46 +26,48 @@ const mono = JetBrains_Mono({
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-ar",
+  variable: "--font-arabic",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://iury.studio"),
   title: {
-    default: "IURY — Belkhiri Abdelaziz · Autoentrepreneur & AI Researcher",
-    template: "%s — IURY",
+    default: "Belkhiri Abdelaziz — Systèmes d'entreprise, module par module",
+    template: "%s — Belkhiri Abdelaziz",
   },
   description:
-    "The cinematic portfolio of Belkhiri Abdelaziz — autoentrepreneur and AI researcher building software that sees, decides, and ships. AI systems, real-time platforms, and interfaces that move like film.",
+    "Cinq systèmes conçus et construits de bout en bout — contrats et échéanciers, journaux comptables, entrepôts, équipes terrain, portails et messagerie temps réel — démontés module par module.",
   keywords: [
     "Belkhiri Abdelaziz",
     "IURY",
-    "AI researcher",
-    "autoentrepreneur",
-    "software engineer",
-    "Algeria",
+    "ERP",
+    "logiciel d'entreprise",
+    "ingénieur logiciel",
+    "Algérie",
+    "multi-entités",
+    "comptabilité",
     "Next.js",
-    "full-stack",
   ],
   authors: [{ name: "Belkhiri Abdelaziz" }],
   openGraph: {
-    title: "IURY — Belkhiri Abdelaziz",
+    title: "Belkhiri Abdelaziz — Systèmes d'entreprise, module par module",
     description:
-      "Autoentrepreneur and AI researcher. A cinematic portfolio of AI systems, real-time platforms, and interfaces that move like film.",
+      "Contrats, journaux comptables, entrepôts, équipes terrain, portails : cinq systèmes conçus et construits de bout en bout, et comment chacun fonctionne.",
     type: "website",
     siteName: "IURY",
+    locale: "fr_FR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IURY — Belkhiri Abdelaziz",
-    description: "Autoentrepreneur & AI researcher — cinematic portfolio.",
+    title: "Belkhiri Abdelaziz — Systèmes d'entreprise, module par module",
+    description: "Cinq systèmes conçus et construits de bout en bout, démontés module par module.",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08080a",
+  themeColor: "#e8e8ea",
   width: "device-width",
   initialScale: 1,
 };
@@ -77,9 +78,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${serif.variable} ${hanken.variable} ${mono.variable} ${arabic.variable} antialiased`}
+        className={`${grotesk.variable} ${hanken.variable} ${mono.variable} ${arabic.variable} antialiased`}
       >
         {children}
       </body>

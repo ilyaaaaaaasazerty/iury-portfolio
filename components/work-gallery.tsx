@@ -4,17 +4,28 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "@/lib/types";
 import { useLocale } from "./locale-provider";
-import { projectTagline, t } from "@/lib/i18n";
+import { useIury } from "./iury-context";
+import { useMounted } from "./iury";
+import { Module } from "./modules";
+import { projectTagline, t, timeAgo } from "@/lib/i18n";
+import { languageColor } from "@/lib/languages";
 import CoverImage from "./cover-image";
 import ProjectModal from "./project-modal";
-import SectionHeader from "./section-header";
-import TextReveal from "./text-reveal";
-import { IconArrow } from "./icons";
+import { IconArrow, IconGithub, IconStar } from "./icons";
 
 const primaryTag = (p: Project) => p.category.split("·")[0].trim();
 
-export default function WorkGallery({ projects }: { projects: Project[] }) {
+export default function WorkGallery({
+  projects,
+  index,
+  username,
+}: {
+  projects: Project[];
+  index: number;
+  username: string;
+}) {
   const { locale } = useLocale();
+  const mounted = useMounted();
   const [filter, setFilter] = useState<string>("all");
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -30,7 +41,19 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
     return projects.filter((p) => primaryTag(p) === filter);
   }, [projects, filter]);
 
-  const numberOf = (p: Project) => projects.findIndex((x) => x.id === p.id) + 1;
+  const latestPush = useMemo(
+    () =>
+      projects
+        .map((p) => p.repo?.pushedAt)
+        .filter(Boolean)
+        .sort()
+        .pop(),
+    [projects]
+  );
+  const say =
+    latestPush && mounted
+      ? t(locale, "work.note", { count: projects.length, when: timeAgo(latestPush, locale) })
+      : t(locale, "work.noteStatic");
 
   const changeFilter = (f: string) => {
     setSelected(null);
@@ -42,56 +65,55 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
   const next = () => setSelected((s) => (s === null ? s : (s + 1) % filtered.length));
 
   return (
-    <section id="work" className="border-t border-line py-24 md:py-32">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <SectionHeader num={3} labelKey="work.kicker" />
-
-        <div className="grid gap-8 md:grid-cols-12">
-          <TextReveal className="display text-[clamp(2.1rem,6vw,5.2rem)] text-bone md:col-span-7">
-            {t(locale, "work.title")}
-          </TextReveal>
-          <p className="self-end text-sm leading-relaxed text-smoke md:col-span-4 md:col-start-9 md:text-base">
-            {t(locale, "work.lead")}
-          </p>
-        </div>
-
-        <div className="mt-12 flex flex-wrap items-center gap-2">
-          <Chip active={filter === "all"} onClick={() => changeFilter("all")}>
-            {t(locale, "work.all")}
-          </Chip>
-          <Chip active={filter === "featured"} onClick={() => changeFilter("featured")}>
-            {t(locale, "work.featured")}
-          </Chip>
-          <span className="mx-1 h-4 w-px bg-line-2" />
-          {tags.map((tag) => (
-            <Chip key={tag} active={filter === tag} onClick={() => changeFilter(tag)}>
-              {tag}
-            </Chip>
-          ))}
-        </div>
-
-        <motion.div
-          layout
-          className="mt-10 grid grid-cols-2 gap-3 [grid-auto-flow:dense] md:grid-cols-6 md:gap-4"
+    <Module
+      id="work"
+      index={index}
+      label={t(locale, "work.kicker")}
+      say={say}
+      pose="point"
+      meta={
+        <a
+          href={`https://github.com/${username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 hover:text-ink"
         >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((p, i) => (
-              <Frame
-                key={p.id}
-                project={p}
-                number={numberOf(p)}
-                onClick={() => setSelected(i)}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+          <IconGithub size={12} /> {username}
+        </a>
+      }
+    >
+      <h2 className="display text-[clamp(2.2rem,4.4vw,3.8rem)] text-ink">{t(locale, "work.title")}</h2>
+      <p className="mt-4 max-w-xl leading-relaxed text-mute">{t(locale, "work.lead")}</p>
+
+      <div className="mt-8 flex flex-wrap items-center gap-1.5">
+        <Chip active={filter === "all"} onClick={() => changeFilter("all")}>
+          {t(locale, "work.all")}
+          <span className="font-mono text-[10px] opacity-60">{projects.length}</span>
+        </Chip>
+        <Chip active={filter === "featured"} onClick={() => changeFilter("featured")}>
+          <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+          {t(locale, "work.featured")}
+        </Chip>
+        {tags.map((tag) => (
+          <Chip key={tag} active={filter === tag} onClick={() => changeFilter(tag)}>
+            {tag}
+          </Chip>
+        ))}
       </div>
+
+      <motion.div layout className="mt-6 grid grid-cols-1 gap-3 [grid-auto-flow:dense] sm:grid-cols-2">
+        <AnimatePresence mode="popLayout">
+          {filtered.map((p, i) => (
+            <Card key={p.id} project={p} onClick={() => setSelected(i)} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
+      {!filtered.length && <p className="mt-10 text-center text-sm text-faint">{t(locale, "work.empty")}</p>}
 
       <AnimatePresence>
         {selected !== null && filtered[selected] && (
           <ProjectModal
             project={filtered[selected]}
-            index={numberOf(filtered[selected])}
             position={selected}
             total={filtered.length}
             onClose={close}
@@ -100,71 +122,87 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
           />
         )}
       </AnimatePresence>
-    </section>
+    </Module>
   );
 }
 
-function Frame({
-  project,
-  number,
-  onClick,
-}: {
-  project: Project;
-  number: number;
-  onClick: () => void;
-}) {
+function Card({ project, onClick }: { project: Project; onClick: () => void }) {
   const { locale } = useLocale();
+  const { react, release } = useIury();
+  const mounted = useMounted();
   const big = project.featured;
+  const lang = project.repo?.language;
+  const tagline = projectTagline(project, locale);
+
   return (
     <motion.button
       layout
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       onClick={onClick}
-      data-cursor
-      className={`group relative overflow-hidden border border-line bg-ink text-start ${
-        big
-          ? "col-span-2 aspect-[4/3] md:col-span-3"
-          : "col-span-1 aspect-[4/5] md:col-span-2"
+      onPointerEnter={() => react(tagline ? `${project.name} — ${tagline}` : project.name, "point", 0)}
+      onPointerLeave={release}
+      className={`group flex flex-col overflow-hidden rounded-[22px] bg-panel p-1.5 text-start ring-1 ring-line transition-[box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-26px_rgba(19,19,22,0.45)] ${
+        big ? "sm:col-span-2" : ""
       }`}
     >
-      <CoverImage project={project} index={number - 1} className="absolute inset-0" />
-      <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/15 to-void/5 transition-opacity duration-700 group-hover:from-void/80" />
-
-      <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
-        <span className="meta text-[10px] text-fog/80">
-          {t(locale, "work.frame")} {String(number).padStart(2, "0")}
-        </span>
-        {project.comingSoon ? (
-          <span className="rounded-full border border-line-2 bg-void/60 px-2 py-0.5 meta text-[8px] text-fog backdrop-blur-sm">
-            {t(locale, "common.comingSoon")}
+      <div className={`relative overflow-hidden rounded-[17px] ${big ? "aspect-[16/7]" : "aspect-[16/10]"}`}>
+        <CoverImage project={project} className="absolute inset-0" />
+        <div className="absolute inset-x-2.5 top-2.5 flex items-center justify-between gap-2">
+          <span className="truncate rounded-full bg-panel/90 px-2.5 py-1 text-[11px] text-mute backdrop-blur">
+            {project.category}
           </span>
-        ) : project.featured ? (
-          <span className="h-1.5 w-1.5 rounded-full bg-fog/80" aria-hidden />
-        ) : null}
+          {project.comingSoon ? (
+            <Badge>{t(locale, "common.comingSoon")}</Badge>
+          ) : project.featured ? (
+            <Badge led>{t(locale, "work.featured")}</Badge>
+          ) : null}
+        </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
-        <div className="flex items-end justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="display text-2xl leading-none text-bone md:text-3xl">
-              {project.name}
-            </h3>
-            <p className="meta mt-2.5 text-[10px] text-smoke">{project.category}</p>
-          </div>
-          <span className="mb-1 flex h-9 w-9 shrink-0 translate-y-2 items-center justify-center rounded-full border border-line-2 text-bone opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-            <IconArrow size={16} />
+      <div className="flex flex-1 flex-col px-3 pb-2.5 pt-3.5">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="display text-xl text-ink md:text-2xl">{project.name}</h3>
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-mute ring-1 ring-line transition-all duration-500 group-hover:bg-ink group-hover:text-panel group-hover:ring-ink">
+            <IconArrow size={14} />
           </span>
         </div>
-        {big && (
-          <p className="mt-3 max-w-md text-sm leading-snug text-smoke opacity-0 transition-opacity duration-700 group-hover:opacity-100">
-            {projectTagline(project, locale)}
-          </p>
-        )}
+        {tagline && <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-mute">{tagline}</p>}
+
+        <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-3.5 font-mono text-[11px] text-faint">
+          {lang && (
+            <span className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full" style={{ background: languageColor(lang) }} />
+              {lang}
+            </span>
+          )}
+          {!!project.repo?.stars && (
+            <span className="flex items-center gap-1">
+              <IconStar size={12} /> {project.repo.stars}
+            </span>
+          )}
+          {project.repo ? (
+            <span className="flex items-center gap-1.5">
+              <IconGithub size={12} />
+              {mounted ? timeAgo(project.repo.pushedAt, locale) : project.repo.pushedAt.slice(0, 10)}
+            </span>
+          ) : (
+            <span>{project.year}</span>
+          )}
+        </div>
       </div>
     </motion.button>
+  );
+}
+
+function Badge({ children, led }: { children: React.ReactNode; led?: boolean }) {
+  return (
+    <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-ink px-2.5 py-1 text-[11px] text-panel">
+      {led && <span className="h-1.5 w-1.5 rounded-full bg-signal" />}
+      {children}
+    </span>
   );
 }
 
@@ -180,10 +218,8 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full border px-3.5 py-1.5 text-xs transition-colors ${
-        active
-          ? "border-bone bg-bone text-ink"
-          : "border-line text-smoke hover:border-line-2 hover:text-fog"
+      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm transition-colors ${
+        active ? "bg-ink text-panel" : "bg-panel text-mute ring-1 ring-line hover:text-ink"
       }`}
     >
       {children}

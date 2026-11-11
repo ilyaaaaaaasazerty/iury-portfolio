@@ -22,14 +22,14 @@
     "ar": "مقاول ذاتي وباحث في الذكاء الاصطناعي — أصمّم برمجيات ترى وتقرّر وتُطلَق."
   },
   "statement": {
-    "en": "I treat software like cinema. Every product I build is a system that should see clearly, decide well, and move beautifully.",
-    "fr": "Je traite le logiciel comme du cinéma. Chaque produit que je construis est un système qui doit voir clair, bien décider et bouger avec élégance.",
-    "ar": "أتعامل مع البرمجيات كأنها سينما. كل منتج أبنيه هو نظامٌ ينبغي أن يرى بوضوح، ويقرّر بحكمة، ويتحرّك بجمال."
+    "en": "I build software that sees clearly, decides well, and ships — and I built IURY to show you around.",
+    "fr": "Je construis des logiciels qui voient clair, décident bien et se déploient — et j'ai créé IURY pour vous faire la visite.",
+    "ar": "أبني برمجيات ترى بوضوح، وتقرّر بحكمة، وتُطلَق فعلًا — وصمّمتُ IURY ليأخذك في جولة."
   },
   "bio": {
-    "en": "I'm an independent software builder and AI researcher working under the IURY studio. I ship full products end to end — web, mobile and desktop — with an obsession for AI systems, real-time architecture, and interfaces that move like film. The work runs from AI tutors and computer-vision try-on to real-time platforms and cinematic storefronts: research thinking, production discipline.",
-    "fr": "Je suis un développeur indépendant et chercheur en IA au sein du studio IURY. Je livre des produits complets de bout en bout — web, mobile et desktop — avec une obsession pour les systèmes d'IA, l'architecture temps réel et les interfaces qui bougent comme du cinéma. Mon travail va des tuteurs IA et de l'essayage par vision par ordinateur jusqu'aux plateformes temps réel et aux boutiques cinématographiques : une pensée de chercheur, une rigueur de production.",
-    "ar": "أنا مطوّر برمجيات مستقل وباحث في الذكاء الاصطناعي ضمن استوديو IURY. أُنجز منتجات كاملة من الألف إلى الياء — ويب، وهاتف، وسطح المكتب — بشغفٍ بأنظمة الذكاء الاصطناعي والبنى الآنية والواجهات التي تتحرّك كالأفلام. تمتدّ أعمالي من معلّمي الذكاء الاصطناعي والتجربة الافتراضية بالرؤية الحاسوبية إلى المنصّات الآنية والمتاجر السينمائية: تفكيرُ باحثٍ والتزامُ إنتاج."
+    "en": "I'm an independent software builder and AI researcher. I ship full products end to end — web, mobile and desktop — with an obsession for AI systems, real-time architecture, and interfaces that feel alive. The work runs from AI tutors and computer-vision try-on to real-time platforms and polished storefronts: research thinking, production discipline.",
+    "fr": "Je suis un développeur indépendant et chercheur en IA. Je livre des produits complets de bout en bout — web, mobile et desktop — avec une obsession pour les systèmes d'IA, l'architecture temps réel et les interfaces vivantes. Mon travail va des tuteurs IA et de l'essayage par vision par ordinateur jusqu'aux plateformes temps réel et aux boutiques soignées : une pensée de chercheur, une rigueur de production.",
+    "ar": "أنا مطوّر برمجيات مستقل وباحث في الذكاء الاصطناعي. أُنجز منتجات كاملة من الألف إلى الياء — ويب، وهاتف، وسطح المكتب — بشغفٍ بأنظمة الذكاء الاصطناعي والبنى الآنية والواجهات النابضة بالحياة. تمتدّ أعمالي من معلّمي الذكاء الاصطناعي والتجربة الافتراضية بالرؤية الحاسوبية إلى المنصّات الآنية والمتاجر المتقنة: تفكيرُ باحثٍ والتزامُ إنتاج."
   },
   "socials": {
     "github": "https://github.com/ilyaaaaaaasazerty",
@@ -89,9 +89,9 @@
     },
     {
       "title": {
-        "en": "Cinematic Web & Mobile",
-        "fr": "Web & mobile cinématographiques",
-        "ar": "ويب وهاتف سينمائيان"
+        "en": "Motion-Rich Web & Mobile",
+        "fr": "Web & mobile animés",
+        "ar": "ويب وهاتف بحركة غنية"
       },
       "desc": {
         "en": "Scroll-driven experiences with GSAP, Three.js, Framer Motion and Lenis — installable PWAs that feel native.",
@@ -221,7 +221,7 @@
         "ar": "التجربة والحركة"
       },
       "items": [
-        "Cinematic scroll — GSAP · Lenis",
+        "Scroll-driven motion — GSAP · Lenis",
         "WebGL · React Three Fiber",
         "Framer Motion systems",
         "Design systems & PWAs"
